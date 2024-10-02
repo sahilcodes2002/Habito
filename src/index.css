@@ -1,0 +1,80 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+/* src/index.css or src/global.css */
+
+/* Example of additional custom Tailwind-based styling */
+.rbc-today {
+    @apply bg-blue-300 !important;
+  }  
+  
+  .rbc-event {
+    @apply rounded-lg p-1 px-2 flex text-white !important; /* Make events rounded and styled */
+  }
+  
+  .rbc-month-view {
+    @apply bg-white !important; /* Background color for the calendar */
+  }
+  
+
+  .rbc-header {
+    @apply bg-indigo-500 text-white p-2 text-center text-[10px] font-semibold !important;
+  }
+  
+  .rbc-header:first-child {
+    @apply bg-green-600 !important; /* Sunday */
+  }
+  
+  .rbc-header:nth-child(2) {
+    @apply bg-green-500 !important; /* Monday */
+  }
+  
+  .rbc-header:nth-child(3) {
+    @apply bg-green-400 !important; /* Tuesday */
+  }
+  .rbc-header:nth-child(4) {
+    @apply bg-green-400 !important; /* Tuesday */
+  }
+  .rbc-header:nth-child(5) {
+    @apply bg-green-400 !important; /* Tuesday */
+  }
+  .rbc-header:nth-child(6) {
+    @apply bg-green-500 !important; /* Tuesday */
+  }
+  .rbc-header:nth-child(7) {
+    @apply bg-green-600 !important; /* Tuesday */
+  }
+
+
+  /* Hide the scrollbar */
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  /* Add this to your global styles */
+.week-calendar::-webkit-scrollbar {
+  width: 4px; /* Width of the scrollbar */
+}
+
+.week-calendar::-webkit-scrollbar-track {
+  background: #f1f1f1; /* Background of the scrollbar track */
+}
+
+.week-calendar::-webkit-scrollbar-thumb {
+  background: #888; /* Color of the scrollbar thumb */
+  border-radius: 10px; /* Roundness of the scrollbar thumb */
+}
+
+.week-calendar::-webkit-scrollbar-thumb:hover {
+  background: #555; /* Color when hovering over the scrollbar thumb */
+}
+
+  
