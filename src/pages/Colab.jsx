@@ -423,20 +423,7 @@ function Sidebar({ isSidebarOpen }) {
       <div className="flex flex-col justify-between h-full px-3 pt-1 pb-4 overflow-y-auto bg-mytitlebar">
         <div>
           <ul className="cursor-pointer space-y-2 font-medium">
-            <li>
-              <a className="flex items-center justify-center p-2 rounded-lg text-white  group">
-                <div className="flex space-x-0">
-                  <span className="flex flex-col justify-center">
-                    <img
-                      className="h-6 w-6"
-                      src={design}
-                      alt="Design"
-                    />
-                  </span>
-                  <span className="ms-3 text-3xl text-mytext">abito</span>
-                </div>
-              </a>
-            </li>
+            
 
             {/* <li>
               <a
@@ -456,6 +443,33 @@ function Sidebar({ isSidebarOpen }) {
                 
               </a>
             </li> */}
+            <li className="mt-2">
+              <a
+                onClick={() => {
+                  navigate("/dashboard");
+                }}
+                className="flex items-center p-2 text-mytext rounded-lg  hover:bg-mytextbg hover:text-white  group fill-mytext hover:fill-[#ffffff]"
+              >
+                <svg
+                className="flex-shrink-0 w-5 h-5  transition duration-75  group-hover:text-white "
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="peach"
+                  viewBox="0 0 24 24"
+                  stroke-width="1.5"
+                  stroke="currentColor"
+                  class="size-6"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
+                  />
+                </svg>
+
+                <span className="flex-1 ms-3 whitespace-nowrap">Dashboard</span>
+                {/* <span className="inline-flex items-center justify-center w-3 h-3 p-3 ms-3 text-sm font-medium text-blue-800 bg-blue-100 rounded-full dark:bg-blue-900 dark:text-blue-300">3</span> */}
+              </a>
+            </li>
             <li>
               <a
                 onClick={() => {
