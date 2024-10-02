@@ -1619,17 +1619,16 @@ function ProjectTaskManager({
       </div>
     );
   };
-  const LoadingIndicator = () => (
-    <div className="fixed inset-0 flex items-center justify-center bg-gray-700 bg-opacity-50 z-50">
+  const LoadingIndicator = () => {
+    return<div className="fixed inset-0 flex items-center justify-center bg-gray-700 bg-opacity-50 z-50">
       <div className="w-16 h-16 border-t-4 border-blue-500 border-solid rounded-full animate-spin"></div>
-    </div>
-  );
+    </div>};
   return (
     <div className="p-2 pl-1 smd:pl-2 pt-5">
       <h2 className="text-xl font-bold mb-4">{projectTitle}</h2>
       <div>{renderTasks(tasks)}</div>
       {loading  && <LoadingIndicator />}
-      <div className={`flex justify-center ${projectData.user_id ===allinfo.user_id?"flex justify-center":"hidden"}`}>
+      <div className={`flex justify-center ${projectData.user_id == parseInt(allinfo.id)?"flex justify-center":"hidden"}`}>
         <button
           onClick={() => {
             setShowinfo1(true);
