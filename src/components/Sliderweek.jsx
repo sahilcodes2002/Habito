@@ -35,7 +35,7 @@ export function HorizontalSliderweek({ isSidebarOpen, addevent }) {
       try {
         
         const response = await axios.get(
-          `http://127.0.0.1:8787/getweekevents`,
+          `https://honoprisma.codessahil.workers.dev/getweekevents`,
           {
             headers: {
               Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -127,7 +127,7 @@ export function HorizontalSliderweek({ isSidebarOpen, addevent }) {
     if (task) {
       try {
         const response = await axios.post(
-          "http://127.0.0.1:8787/addweekevent",
+          "https://honoprisma.codessahil.workers.dev/addweekevent",
           {
             task: task,
             completed: false,
@@ -270,7 +270,7 @@ export function HorizontalSliderweek({ isSidebarOpen, addevent }) {
                             
                             <button onClick={async()=>{
                               const response = await axios.post(
-                                "http://127.0.0.1:8787/deleteweektask",
+                                "https://honoprisma.codessahil.workers.dev/deleteweektask",
                                 {
                                   id:task.id
                                 },
