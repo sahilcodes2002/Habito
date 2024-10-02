@@ -218,21 +218,21 @@ export function Join() {
                                         
                                     }else{
                                         localStorage.setItem("token", response.data.token)
-                                        setTodoList(response.data.res.todo);
-                                        setInfo({
-                                            name: response.data.data.name,
-                                            username:response.data.data.username,
-                                            id:response.data.data.id,
-                                            created_at:response.data.data.created_at,
-                                            todo:response.data.data.todo,
-                                            projects:response.data.data.projects,
-                                            workhistory:response.data.data.workhistory,
-                                            weeklytask:response.data.data.weeklytask,
-                                            calenderevents:response.data.data.calenderevents,
+                                        //setTodoList(response.data.res.todo);
+                                        // setInfo({
+                                        //     name: response.data.data.name,
+                                        //     username:response.data.data.username,
+                                        //     id:response.data.data.id,
+                                        //     created_at:response.data.data.created_at,
+                                        //     todo:response.data.data.todo,
+                                        //     projects:response.data.data.projects,
+                                        //     workhistory:response.data.data.workhistory,
+                                        //     weeklytask:response.data.data.weeklytask,
+                                        //     calenderevents:response.data.data.calenderevents,
                                             
-                                        })
+                                        // })
                                         setLoading(false)
-                                        navigate(`/dashboard`)
+                                        navigate(`/signin`)
                                     }
                                     
 
