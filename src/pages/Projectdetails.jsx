@@ -20,6 +20,7 @@ export function ProjectDetails() {
   const [allinfo, setinfo] = useRecoilState(info);
   const [coreprojectdata, setcoredata] = useState(null);
   const [refresh, setRefresh] = useState(false);
+  const [refresh1, setRefresh1] = useState(false);
   const [showinfo, setShowinfo] = useState(false);
   const [showinfo1, setShowinfo1] = useState(false);
   const [mailworks, setmailworks] = useState([]);
@@ -41,7 +42,9 @@ export function ProjectDetails() {
 
     async function start() {
       setLoading(true);
-
+      await fetchProjectData();
+      setLoading(false);
+      
       try {
         const response1 = await axios.post(
           `https://honoprisma.codessahil.workers.dev/getmailwork`,
@@ -75,11 +78,9 @@ export function ProjectDetails() {
         console.log(err);
       }
       await fetchAllUsers();
-      await fetchProjectData();
-
       fetchInvitedUsers().then(() => {
         intervalId = setInterval(async () => {
-          console.log(invitedUsersRef.current.length); // This will always reflect the latest value
+          console.log(invitedUsersRef.current.length); 
           if (projectdata1 != null && invitedUsersRef.current.length > 0) {
             const dd = await checktoupdate();
             if (dd === true) {
@@ -89,13 +90,20 @@ export function ProjectDetails() {
             }
           }
         }, 5000);
+        
       });
+      
+      
     }
 
     start();
 
     return () => clearInterval(intervalId);
   }, [refresh]);
+
+  // useEffect(()=>{
+  //   console.log("refreshing");
+  // },[projectData])
 
   // useEffect(() => {
   //   if (!localStorage.getItem("token")) {
@@ -324,7 +332,8 @@ export function ProjectDetails() {
           title: subwork.subwork,
           description: subwork.subdescription,
           assignto: subwork.assignto,
-          completed: subwork.completed, // Add this if you track subtask completion
+          completed: subwork.completed,
+          work_id: subwork.work_id
         })),
     }));
   };
@@ -435,10 +444,12 @@ export function ProjectDetails() {
             showinfo1={showinfo1}
             showinfo={showinfo}
             setRefresh={setRefresh}
+            setRefresh1={setRefresh1}
             id={id}
             projectTitle={projectData.title}
-            initialTasks={projectData.tasks}
+            tasks={projectData.tasks}
             projectData={projectData}
+            setProjectData={setProjectData}
             allinfo={allinfo}
             invitedusers={invitedusers}
             projectdata1={projectdata1}
@@ -573,9 +584,11 @@ function ProjectTaskManager({
   showinfo,
   showinfo1,
   setRefresh,
+  setRefresh1,
   projectTitle,
-  initialTasks,
+  tasks,
   projectData,
+  setProjectData,
   allinfo,
   invitedusers,
   projectdata1,
@@ -584,9 +597,11 @@ function ProjectTaskManager({
   setmailsubworks,
   mailsubworks,
 }) {
-  //console.log(projectData);
-  const [tasks, setTasks] = useState(initialTasks);
+  console.log(projectData);
+  console.log(tasks);
+  //const [tasks, setTasks] = useState(initialTasks);
   const [loading, setLoading] = useState(false);
+  const [refresh2, setRefresh2] = useState(false);
   const [showinfoofid, setShowinfoofid] = useState(null);
   const [isediting, setIsediting] = useState(null);
   const [title, setTitle] = useState("");
@@ -689,6 +704,10 @@ function ProjectTaskManager({
   //   }
   // };
 
+  // useEffect(()=>{
+  //   console.log("refreshing");
+  //   setRefresh2((x)=>!x);
+  // },[projectData])
   const handleCheckboxChange = async (taskId, parentId) => {
     const updateTaskCompleted = (taskList, taskId, parentId) => {
       return taskList.map((task) => {
@@ -993,9 +1012,9 @@ function ProjectTaskManager({
   }
 
   // Render tasks and subtasks
-  async function handlesubtaskdelete(id) {
+  async function handlesubtaskdelete(id, work_id) {
     try {
-      setLoading(true);
+      //setLoading(true);
       await axios.post(
         `https://honoprisma.codessahil.workers.dev/deletesubwork`,
         {
@@ -1008,14 +1027,29 @@ function ProjectTaskManager({
           },
         }
       );
-      setLoading(false);
+      //setLoading(false);
+      setProjectData((prevProjectData) => ({
+        ...prevProjectData,
+        tasks: prevProjectData.tasks.map((task) => {
+          if (task.id === work_id) {
+            // Update the task's subtasks by filtering out the subtask with the given id
+            return {
+              ...task,
+              subtasks: task.subtasks.filter((subtask) => subtask.id !== id),
+            };
+          }
+          return task; // Return the other tasks as-is
+        }),
+      }));
+      
+      
     } catch (err) {
       alert(err);
     }
   }
   async function handletaskdelete(id) {
     try {
-      setLoading(true);
+      //setLoading(true);
       await axios.post(
         `https://honoprisma.codessahil.workers.dev/deletework`,
         {
@@ -1028,7 +1062,12 @@ function ProjectTaskManager({
           },
         }
       );
-      setLoading(false);
+      //setLoading(false);
+      //filter((subtask) => subtask.id !== id),
+      setProjectData((prevProjectData) => ({
+        ...prevProjectData,
+        tasks: prevProjectData.tasks.filter((task) => task.id !== id)
+      }));
     } catch (err) {
       alert(err);
     }
@@ -1112,11 +1151,14 @@ function ProjectTaskManager({
                     } `}
                     onClick={async () => {
                       if (parentId) {
-                        await handlesubtaskdelete(task.id);
-                        setRefresh((x) => !x);
+                        console.log(task);
+                        
+                        await handlesubtaskdelete(task.id, task.work_id);
+                        //setRefresh((x) => !x);
+                        setRefresh1((x)=>!x);
                       } else {
                         await handletaskdelete(task.id);
-                        setRefresh((x) => !x);
+                        //setRefresh((x) => !x);
                       }
                     }}
                   >
@@ -1619,10 +1661,11 @@ function ProjectTaskManager({
       </div>
     );
   };
-  const LoadingIndicator = () => {
-    return<div className="fixed inset-0 flex items-center justify-center bg-gray-700 bg-opacity-50 z-50">
+  const LoadingIndicator = () => (
+    <div className="fixed inset-0 flex items-center justify-center bg-gray-700 bg-opacity-50 z-50">
       <div className="w-16 h-16 border-t-4 border-blue-500 border-solid rounded-full animate-spin"></div>
-    </div>};
+    </div>
+  );
   return (
     <div className="p-2 pl-1 smd:pl-2 pt-5">
       <h2 className="text-xl font-bold mb-4">{projectTitle}</h2>
