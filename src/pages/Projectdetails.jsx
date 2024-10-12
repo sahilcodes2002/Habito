@@ -33,6 +33,10 @@ export function ProjectDetails() {
     invitedUsersRef.current = invitedusers;
   }, [invitedusers]);
 
+  useEffect(()=>{
+    console.log(projectData);
+  },[projectData])
+
   useEffect(() => {
     if (!localStorage.getItem("token")) {
       navigate("/");
@@ -601,7 +605,7 @@ function ProjectTaskManager({
   console.log(tasks);
   //const [tasks, setTasks] = useState(initialTasks);
   const [loading, setLoading] = useState(false);
-  const [refresh2, setRefresh2] = useState(false);
+  //const [refresh2, setRefresh2] = useState(false);
   const [showinfoofid, setShowinfoofid] = useState(null);
   const [isediting, setIsediting] = useState(null);
   const [title, setTitle] = useState("");
@@ -1028,21 +1032,48 @@ function ProjectTaskManager({
         }
       );
       //setLoading(false);
-      setProjectData((prevProjectData) => ({
-        ...prevProjectData,
-        tasks: prevProjectData.tasks.map((task) => {
-          if (task.id === work_id) {
-            // Update the task's subtasks by filtering out the subtask with the given id
-            return {
-              ...task,
-              subtasks: task.subtasks.filter((subtask) => subtask.id !== id),
-            };
-          }
-          return task; // Return the other tasks as-is
-        }),
-      }));
+      //const [newprojectdata, setnew] = useState(null)
+      // console.log("Before setProjectData");
+      // const prevProjectData = projectData;
+      // var yy = {
+      //   ...prevProjectData,
+      //   tasks:prevProjectData.tasks.map((task) => {
+      //     if (task.id === work_id) {
+      //       // Update the task's subtasks by filtering out the subtask with the given id
+      //       const updatedSubtasks = task.subtasks.filter((subtask) => subtask.id !== id);
+      //       return {
+      //         ...task,
+      //         subtasks: updatedSubtasks,
+      //       };
+      //     }
+      //     return task; // Return the other tasks as-is
+      //   })
+      // }
+      // //setProjectData(nu);
+      // setProjectData(yy);
+      // setProjectData((prevProjectData) => {
+      //   const updatedTasks = prevProjectData.tasks.map((task) => {
+      //     if (task.id === work_id) {
+      //       // Update the task's subtasks by filtering out the subtask with the given id
+      //       const updatedSubtasks = task.subtasks.filter((subtask) => subtask.id !== id);
+      //       return {
+      //         ...task,
+      //         subtasks: updatedSubtasks,
+      //       };
+      //     }
+      //     return task; // Return the other tasks as-is
+      //   });
+      
+      //   return {
+      //     ...prevProjectData,
+      //     tasks: updatedTasks,
+      //   };
+      // });
+      
+
       
       
+
     } catch (err) {
       alert(err);
     }
@@ -1154,8 +1185,8 @@ function ProjectTaskManager({
                         console.log(task);
                         
                         await handlesubtaskdelete(task.id, task.work_id);
-                        //setRefresh((x) => !x);
-                        setRefresh1((x)=>!x);
+                        setRefresh((x) => !x);
+                        //setRefresh1((x)=>!x);
                       } else {
                         await handletaskdelete(task.id);
                         //setRefresh((x) => !x);
