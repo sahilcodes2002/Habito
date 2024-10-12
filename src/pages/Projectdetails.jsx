@@ -25,6 +25,7 @@ export function ProjectDetails() {
   const [showinfo1, setShowinfo1] = useState(false);
   const [mailworks, setmailworks] = useState([]);
   const [mailsubworks, setmailsubworks] = useState([]);
+  const [tasks, setTasks] = useState(null);
 
   const invitedUsersRef = useRef(invitedusers);
 
@@ -218,6 +219,7 @@ export function ProjectDetails() {
       //console.log(data);
 
       const transformedTasks = await transformTasks(data.works, data.subworks);
+      setTasks(transformedTasks);
       setProjectData({
         title: data.title,
         tasks: transformedTasks,
@@ -230,6 +232,7 @@ export function ProjectDetails() {
         done: data.done,
         created_at: data.created_at,
       });
+      //setTasks(transformedTasks);
     } catch (error) {
       console.error("Error fetching project data:", error);
     } finally {
@@ -451,7 +454,8 @@ export function ProjectDetails() {
             setRefresh1={setRefresh1}
             id={id}
             projectTitle={projectData.title}
-            tasks={projectData.tasks}
+            tasks={tasks}
+            setTasks={setTasks}
             projectData={projectData}
             setProjectData={setProjectData}
             allinfo={allinfo}
@@ -591,6 +595,7 @@ function ProjectTaskManager({
   setRefresh1,
   projectTitle,
   tasks,
+  setTasks,
   projectData,
   setProjectData,
   allinfo,
@@ -605,7 +610,7 @@ function ProjectTaskManager({
   console.log(tasks);
   //const [tasks, setTasks] = useState(initialTasks);
   const [loading, setLoading] = useState(false);
-  //const [refresh2, setRefresh2] = useState(false);
+  const [refresh2, setRefresh2] = useState(false);
   const [showinfoofid, setShowinfoofid] = useState(null);
   const [isediting, setIsediting] = useState(null);
   const [title, setTitle] = useState("");
@@ -763,6 +768,8 @@ function ProjectTaskManager({
       // Update the local state first
       const updatedTasks = updateTaskCompleted(tasks, taskId, parentId);
       setTasks(updatedTasks);
+      //const oldtask = tasks;
+      //tasks = updatedTasks;
 
       try {
         const isSubwork = parentId != null;
@@ -802,6 +809,7 @@ function ProjectTaskManager({
         console.error("Error updating task completion:", error);
         // Optionally revert the local state if needed
         setTasks(tasks);
+        //tasks = oldtask;
       }
     }
   };
@@ -1079,7 +1087,9 @@ function ProjectTaskManager({
     }
   }
   async function handletaskdelete(id) {
+    const prevtask = tasks;
     try {
+      setTasks(tasks.filter((task)=>task.id!==id));
       //setLoading(true);
       await axios.post(
         `https://honoprisma.codessahil.workers.dev/deletework`,
@@ -1099,7 +1109,9 @@ function ProjectTaskManager({
         ...prevProjectData,
         tasks: prevProjectData.tasks.filter((task) => task.id !== id)
       }));
+      
     } catch (err) {
+      setTasks(prevtask);
       alert(err);
     }
   }
@@ -1224,7 +1236,7 @@ function ProjectTaskManager({
                         onChange={() => {
                           //console.log(projectData);
                           if (
-                            projectData.user_id == allinfo.id ||
+                            projectData.user_id == parseInt(allinfo.id) ||
                             allinfo.id == task.assignto
                           ) {
                             handleCheckboxChange(task.id, parentId);
