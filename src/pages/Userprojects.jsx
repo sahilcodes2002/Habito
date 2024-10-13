@@ -116,7 +116,7 @@ export function Userprojects() {
                   <div className="fixed bottom-8 right-4 w-12 h-12 flex items-center justify-center bg-white shadow-md rounded-full">
                     <button
                       onClick={() => {
-                        navigate("/code");
+                        navigate("/createtask");
                       }}
                     >
                       <svg
