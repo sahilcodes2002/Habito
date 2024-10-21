@@ -126,8 +126,9 @@ export function HorizontalSliderweek({ isSidebarOpen, addevent }) {
     const formattedDate = getFormattedDate(date);
     const datetosend = formattedDate + "T00:00:00Z";
     if (task) {
+      var toastId=null;
       try {
-        const toastId = toast.loading("Adding a new week task");
+        toastId = toast.loading("Adding a new week task");
         const response = await axios.post(
           "https://honoprisma.codessahil.workers.dev/addweekevent",
           {
