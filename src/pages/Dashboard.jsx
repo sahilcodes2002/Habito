@@ -13,6 +13,7 @@ import { HorizontalSliderweek } from "../components/Sliderweek";
 import { info } from "../store/atoms/userinfo";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { Button1, Button2, Button3 } from "../components/DashboardButtons";
+import toast from "react-hot-toast";
 
 export function Dashboard() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -32,7 +33,9 @@ export function Dashboard() {
     }
 
     async function reget() {
+      var toastId = null;
       try {
+        toastId = toast.loading("Please wait, fetching data from server...");
         setLoading(true);
         axios
           .post(
@@ -46,6 +49,7 @@ export function Dashboard() {
             }
           )
           .then((response) => {
+            toast.dismiss(toastId);
             //const data = await response?.data?.data;
             //setprojectinfo(data.projects);
             //console.log(projectinfo);
@@ -58,6 +62,7 @@ export function Dashboard() {
           });
       } catch (error) {
         console.error("Error fetching dashboard data", error);
+        toast.error("Failed to get data from server", { id: toastId });
         setLoading(false);
       }
     }
@@ -77,6 +82,7 @@ export function Dashboard() {
   if (loading) {
     return (
       <div>
+        
         <LoadingIndicator></LoadingIndicator>
       </div>
     );
