@@ -127,6 +127,7 @@ export function HorizontalSliderweek({ isSidebarOpen, addevent }) {
     const datetosend = formattedDate + "T00:00:00Z";
     if (task) {
       try {
+        const toastId = toast.loading("Adding a new week task");
         const response = await axios.post(
           "https://honoprisma.codessahil.workers.dev/addweekevent",
           {
@@ -141,6 +142,7 @@ export function HorizontalSliderweek({ isSidebarOpen, addevent }) {
             },
           }
         );
+        toast.success("Task added successfully", { id: toastId });
         const r = await response.data.res;
         const d = await r.date.split("T")[0];
 
@@ -153,6 +155,7 @@ export function HorizontalSliderweek({ isSidebarOpen, addevent }) {
           [d]: [...(prevTasks[d] || []), { task: t, completed: false,id }],
         }));
       } catch (e) {
+        toast.error("Failed to add task", { id: toastId });
         console.log(e);
       }
     }
@@ -270,7 +273,8 @@ export function HorizontalSliderweek({ isSidebarOpen, addevent }) {
                             />
                             
                             <button onClick={async()=>{
-                              toast.success("deleting the week task.");
+                              const toastId = toast.loading("Deleting week task");
+                              
                               const response = await axios.post(
                                 "https://honoprisma.codessahil.workers.dev/deleteweektask",
                                 {
@@ -285,6 +289,7 @@ export function HorizontalSliderweek({ isSidebarOpen, addevent }) {
                                   },
                                 }
                               );
+                              toast.success("Task deleted!", { id: toastId });
                               setTasks((prevTasks) => {
                                 const updatedTasks = prevTasks[formattedDate].filter((x) => x.id !== task.id);
                           
