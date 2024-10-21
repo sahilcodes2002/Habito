@@ -11,6 +11,7 @@ import { startOfWeek as startWeek } from "date-fns";
 import axios from "axios";
 import { info } from "../store/atoms/userinfo";
 import { useRecoilValue, useRecoilState } from "recoil";
+import toast from "react-hot-toast";
 
 const locales = {
   "en-US": enUS,
@@ -269,6 +270,7 @@ export function HorizontalSliderweek({ isSidebarOpen, addevent }) {
                             />
                             
                             <button onClick={async()=>{
+                              toast.success("deleting the week task.");
                               const response = await axios.post(
                                 "https://honoprisma.codessahil.workers.dev/deleteweektask",
                                 {
