@@ -14,6 +14,7 @@ import { info } from "../store/atoms/userinfo";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { Button1, Button2 } from "../components/DashboardButtons";
 import { format } from "date-fns";
+import toast from "react-hot-toast";
 
 export function Userprojects() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -312,7 +313,9 @@ function Usercodes({ isSidebarOpen, isLoading, projectinfo, setprojectinfo }) {
 
   const handleDelete = async (id) => {
     //console.log(id);
+    var toastId = null;
     try {
+      toastId = toast.loading("Deleting Record");
       const res = await axios.delete(
         `https://honoprisma.codessahil.workers.dev/deleteproject/${id}`,
         {
@@ -323,16 +326,24 @@ function Usercodes({ isSidebarOpen, isLoading, projectinfo, setprojectinfo }) {
         }
       );
       //console.log(res);
+      toast.success("deleted!", { id: toastId });
       setProjects(projects.filter((project) => project.id !== id));
       //setprojectinfo(projects);
     } catch (error) {
+      toast.error("Failed to delete Record", { id: toastId });
       console.error("Error deleting project", error);
     }
   };
 
   const handleupdate = async (id, important) => {
     //console.log(id);
+    var toastId = null;
     try {
+      if(important){
+        toastId = toast.loading("Marking record important");
+      }else{
+        toastId = toast.loading("Marking record unimportant");
+      }
       const res = await axios.post(
         `https://honoprisma.codessahil.workers.dev/updateproject`,
         {
@@ -346,7 +357,12 @@ function Usercodes({ isSidebarOpen, isLoading, projectinfo, setprojectinfo }) {
           },
         }
       );
-      //console.log(res);
+      
+      if(important){
+        toast.success("Marked important!", { id: toastId });
+      }else{
+        toast.success("Marked unimportant!", { id: toastId });
+      }
       setProjects((prevProjects) =>
         prevProjects.map((project) =>
           project.id === id ? res.data.res : project
@@ -354,6 +370,11 @@ function Usercodes({ isSidebarOpen, isLoading, projectinfo, setprojectinfo }) {
       );
       //console.log(projects);
     } catch (error) {
+      if(important){
+        toast.success("Failed to Mark important", { id: toastId });
+      }else{
+        toast.success("Failed to Mark unimportant", { id: toastId });
+      }
       console.error("Error deleting project", error);
     }
   };
