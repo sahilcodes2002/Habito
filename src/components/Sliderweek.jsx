@@ -241,7 +241,7 @@ export function HorizontalSliderweek({ isSidebarOpen, addevent }) {
             return (
               <div
                 key={day}
-                className={`week-calendar min-w-[350px] smd:min-w-[300px] smd:overflow-y-auto bg-white border p-2 rounded-lg shadow-lg ${
+                className={`week-calendar min-w-[290px] smd:min-w-[300px] smd:overflow-y-auto bg-white border p-2 rounded-lg shadow-lg ${
                   addevent ? "md:h-[500px] h-72" : "smd:h-72 h-72"
                 }`}
               >
