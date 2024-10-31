@@ -99,7 +99,9 @@ const Showcode = () => {
       alert("Please fill in the title and description");
       return;
     }
+    var toastId = null;
     try {
+      toastId = toast.loading("Saving changes...");
       const response = await axios.post(
         "https://honoprisma.codessahil.workers.dev/updatecode",
         {
@@ -116,9 +118,10 @@ const Showcode = () => {
           },
         }
       );
+      toast.success("Changes saved successfully", { id: toastId });
       console.log(response.data);
       if (response.data.success) {
-        alert("Code saved successfully!");
+        //alert("Code saved successfully!");
         const newdata = codeData;
         newdata.language = language;
         newdata.code = code;
@@ -131,6 +134,7 @@ const Showcode = () => {
         setEditing(false);
       }
     } catch (error) {
+      toast.error("Failed to save", { id: toastId });
       console.error("Error saving code:", error);
     }
   };
