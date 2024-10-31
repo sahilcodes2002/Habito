@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { info } from "../store/atoms/userinfo";
 import { useRecoilValue } from "recoil";
-
+import toast from "react-hot-toast";
 
 const Showcode = () => {
   const allInfo = useRecoilValue(info);
@@ -37,7 +37,9 @@ const Showcode = () => {
 
   useEffect(() => {
     const fetchCode = async () => {
+      var toastId = null;
       try {
+        toastId = toast.loading("Please wait, Fetching code from server...");
         const response = await axios.post(
           "https://honoprisma.codessahil.workers.dev/getcode",
           {
@@ -54,12 +56,14 @@ const Showcode = () => {
           navigate('/allcode')
           return;
         }
+        toast.dismiss(toastId);
         console.log(response.data);
         setCodeData(response.data.res);
         setLanguage(codeData.language);
         settitle(codeData.title);
         setdescription(codeData.description);
       } catch (error) {
+        toast.error("Failed to get code snippet from server", { id: toastId });
         console.error("Error fetching code data", error);
       }
     };
