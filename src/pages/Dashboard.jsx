@@ -739,8 +739,9 @@ const HorizontalSlider = ({ isSidebarOpen, isLoading, projectinfo }) => {
         className="overflow-x-auto flex space-x-4 p-10 scrollbar-hide" // Use Tailwind classes
         style={{ scrollBehavior: "smooth" }} // Smooth scroll behavior
       >
+      {work.length==0 && projectwork.length==0 && <Container0></Container0>}
         {work.map((x) => {
-          console.log(work);
+          //console.log(work);
           return <Container1 x={x}></Container1>;
         })}
         <div className="h-full flex flex-col justify-center">
@@ -769,6 +770,59 @@ const HorizontalSlider = ({ isSidebarOpen, isLoading, projectinfo }) => {
     </div>
   );
 };
+
+
+function Container0() {
+  const navigate = useNavigate();
+  return (
+    <div onClick={()=>{
+      //navigate(`/project/${x.project_id}`)
+    }} className="z-0 bg-blue-600 rounded-lg cursor-pointer">
+      <div className="px-8 ml-1 py-2 h-full flex justify-center space-x-10 bg-white rounded-md">
+        <div className="flex flex-col text-green-700 justify-center space-x-4">
+          {/* <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+            />
+          </svg> */}
+          <div className="cursor-pointer">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"
+            />
+          </svg>
+          </div>
+        </div>
+        <div className="bg-slate-200 w-1 min-h-max rounded-lg"> </div>
+        <div className="flex flex-col justify-center px-2">
+          <div className="text-sm text-gray-600 ">Nothing to</div>
+          <div className="text-sm text-gray-600  text-center">
+            Show here
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 
 function Container1({ x }) {
   const navigate = useNavigate();
