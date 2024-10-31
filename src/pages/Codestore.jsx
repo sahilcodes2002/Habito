@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import Editor from "@monaco-editor/react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-
+import toast from "react-hot-toast";
 const CodeEditor = () => {
   const [code, setCode] = useState("// Write your code here");
   const [language, setLanguage] = useState("javascript");
@@ -13,7 +13,10 @@ const CodeEditor = () => {
   const [savingwindow, setsavingwindow] = useState(false);
   const [title, settitle] = useState("");
   const [description, setdescription] = useState("");
+
+
   const navigate  = useNavigate();
+
 
   useEffect(() => {
     if (!localStorage.getItem("token")) {
@@ -41,7 +44,9 @@ const CodeEditor = () => {
         alert("Please fill in the title and description");
         return;
     }
+    var toastId = null;
     try {
+      toastId = toast.loading("Saving ur code snippet...");
       const response = await axios.post("https://honoprisma.codessahil.workers.dev/savecode", {
         code,
         language,
@@ -56,8 +61,9 @@ const CodeEditor = () => {
       });
       console.log(response.data);
       if (response.data.success) {
-        alert("Code saved successfully!");
+        //alert("Code saved successfully!");
         setsavingwindow(false);
+        toast.success("Code snippet saved successfully", { id: toastId });
         navigate('/allcode');
         
       } else {
@@ -65,6 +71,7 @@ const CodeEditor = () => {
         setsavingwindow(false);
       }
     } catch (error) {
+      toast.error("Failed to save, please try again!!", { id: toastId });
       console.error("Error saving code:", error);
     }
   };
