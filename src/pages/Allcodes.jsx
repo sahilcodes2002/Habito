@@ -287,6 +287,7 @@ function Usercodes({ isSidebarOpen, isLoading, projectinfo, setprojectinfo }) {
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [dummy, setDummy] = useState(projectinfo);
   const dropdownRef = useRef(null);
   const navigate = useNavigate();
 
@@ -320,7 +321,9 @@ function Usercodes({ isSidebarOpen, isLoading, projectinfo, setprojectinfo }) {
 
   const handleDelete = async (id) => {
     //console.log(id);
+    setDummy(projects);
     try {
+      setProjects(projects.filter((project) => project.id !== id));
       const res = await axios.post(
         `https://honoprisma.codessahil.workers.dev/deletecode`,
         {
@@ -334,9 +337,10 @@ function Usercodes({ isSidebarOpen, isLoading, projectinfo, setprojectinfo }) {
         }
       );
       //console.log(res);
-      setProjects(projects.filter((project) => project.id !== id));
+      //setProjects(projects.filter((project) => project.id !== id));
       //setprojectinfo(projects);
     } catch (error) {
+      setProjects(dummy)
       console.error("Error deleting project", error);
     }
   };
