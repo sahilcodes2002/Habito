@@ -486,7 +486,9 @@ function Box_big() {
             <button
               onClick={async () => {
                 setLoading(true);
+                var toastId = null;
                 try {
+                  toastId = toast.loading("Saving record...");
                   var sttime = starttime.current;
                   const senddata = {
                     title: name,
@@ -518,6 +520,7 @@ function Box_big() {
                       },
                     }
                   );
+                  toast.success("Record saved successfully", { id: toastId });
                   setLoading(false);
                   setsavingwindow(false);
                   setwatch(false);
@@ -525,6 +528,7 @@ function Box_big() {
                   setstartedwatch(false);
                   reset();
                 } catch (err) {
+                  toast.error("Failed to save", { id: toastId });
                   //console.log(err);
                   setLoading(false);
                 }
@@ -1161,7 +1165,7 @@ function Sidebar({ isSidebarOpen }) {
             </li>
             <li>
               <a
-                href="#"
+                href="https://github.com/sahilcodes2002/Habito"
                 className="flex items-center p-2 text-mytext rounded-lg group fill-mytext hover:fill-[#ffffff] hover:bg-mytextbg group hover:text-white"
               >
                 <svg
