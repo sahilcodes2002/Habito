@@ -813,9 +813,9 @@ function Container0() {
         </div>
         <div className="bg-slate-200 w-1 min-h-max rounded-lg"> </div>
         <div className="flex flex-col justify-center px-2">
-          <div className="text-xs text-gray-600 ">Nothing to</div>
+          <div className="text-xs text-gray-600 ">Nothing</div>
           <div className="text-sm text-gray-600  text-center">
-            Show here
+            here
           </div>
         </div>
       </div>
@@ -1281,7 +1281,7 @@ function Sidebar({ isSidebarOpen }) {
                   localStorage.removeItem("weektasks");
                   navigate("/signin");
                 }}
-                className="flex items-center p-2 text-mytext rounded-lg hover:bg-mytextbg group hover:text-white fill-mytext hover:fill-[#ffffff]"
+                className="cursor-pointer flex items-center p-2 text-mytext rounded-lg hover:bg-mytextbg group hover:text-white fill-mytext hover:fill-[#ffffff]"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
