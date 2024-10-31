@@ -3,7 +3,7 @@ import axios from "axios";
 import codesave1 from "../images/codesave1.png";
 import Design from "../images/Design.jpg";
 import codesave from "../images/codesave.png";
-
+import toast from "react-hot-toast";
 
 import { Topbarlogin } from "../components/Topbarlogin";
 import { useNavigate } from "react-router-dom";
@@ -33,7 +33,9 @@ export function Allcodes() {
     }
 
     async function reget() {
+      var toastId = null;
       try {
+        toastId = toast.loading("Please wait, fetching your codes from server...");
         setLoading(true);
         axios
           .post(
@@ -47,6 +49,7 @@ export function Allcodes() {
             }
           )
           .then((response) => {
+            toast.dismiss(toastId);
             setLoading(false);
             setprojectinfo(response.data.res);
             //setcalenderevents(response.data.data.calenderevents);
@@ -54,6 +57,7 @@ export function Allcodes() {
             //console.log(projectinfo);
           });
       } catch (error) {
+        toast.error("Failed to get codes from server", { id: toastId });
         console.error("Error fetching dashboard data", error);
         setLoading(false);
       }
