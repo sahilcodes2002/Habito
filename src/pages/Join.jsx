@@ -5,6 +5,7 @@ import { RecoilRoot, useRecoilState, useRecoilValue } from "recoil"
 import { todos } from "../store/atoms/todos";
 import { info } from "../store/atoms/userinfo"
 import { Link } from "react-router-dom"
+import designImage from "../images/Design.jpg";
 
 export function Join() {
     const [verified, setVerified] = useState(false)
@@ -37,7 +38,7 @@ export function Join() {
             navigate('/')
         }} className="cursor-pointer text-3xl font-bold text-gray-800"><div className='flex'>
           <span className='flex flex-col justify-center'>
-          <img className="h-7 w-7" src="src/images/Design.jpg" alt="Design" />
+          <img className="h-7 w-7" src={designImage} alt="Design" />
           </span>
           <span style={{ color: 'rgb(63, 222, 156)' }} className='font-sans'>
           Habito
