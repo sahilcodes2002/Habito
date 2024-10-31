@@ -813,7 +813,7 @@ function Container0() {
         </div>
         <div className="bg-slate-200 w-1 min-h-max rounded-lg"> </div>
         <div className="flex flex-col justify-center px-2">
-          <div className="text-sm text-gray-600 ">Nothing to</div>
+          <div className="text-xs text-gray-600 ">Nothing to</div>
           <div className="text-sm text-gray-600  text-center">
             Show here
           </div>
