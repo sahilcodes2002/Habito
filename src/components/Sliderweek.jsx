@@ -178,7 +178,7 @@ export function HorizontalSliderweek({ isSidebarOpen, addevent }) {
     try{
       toastId = toast.loading(`Setting task as ${!completed?"completed":"incomplete"}`);
       const response = await axios.post(
-        "http://127.0.0.1:8787/updateweekevent",
+        "https://honoprisma.codessahil.workers.dev/updateweekevent",
         {
           id:id,
           completed: !completed,
