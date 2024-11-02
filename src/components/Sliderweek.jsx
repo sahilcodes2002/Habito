@@ -27,7 +27,7 @@ const localizer = dateFnsLocalizer({
 
 export function HorizontalSliderweek({ isSidebarOpen, addevent }) {
   const allInfo = useRecoilValue(info);
-  
+
   const containerRef = useRef(null);
   const [tasks, setTasks] = useState([]);
   const [dummytasks, setDummytasks] = useState([]);
@@ -35,7 +35,6 @@ export function HorizontalSliderweek({ isSidebarOpen, addevent }) {
   useEffect(() => {
     async function getData() {
       try {
-        
         const response = await axios.get(
           `https://honoprisma.codessahil.workers.dev/getweekevents`,
           {
@@ -45,39 +44,49 @@ export function HorizontalSliderweek({ isSidebarOpen, addevent }) {
             },
           }
         );
-        
+
         if (response.data.success) {
           const fetchedTasks = response.data.res;
           const newTasks = {}; // Temporary object to hold new tasks
-  
+
           for (const r of fetchedTasks) {
             const date = r.date.split("T")[0]; // Extract date
             const task = r.task;
             const completed = r.completed;
             const id = r.id;
-  
+
             // Accumulate tasks for each date
             if (!newTasks[date]) {
               newTasks[date] = [];
             }
             newTasks[date].push({ task, completed, id });
           }
-  
+
           // Set tasks state after loop is done
           setTasks(newTasks);
           scrollRightless();
+          const today = new Date();
+          let dayOfWeek = getDay(today);
+          dayOfWeek = dayOfWeek === 0 ? 7 : dayOfWeek;
+          console.log(dayOfWeek);
+          for (let i = 1; i < dayOfWeek; i++) {
+            setTimeout(() => {
+              if (typeof scrollRight === "function") {
+                scrollRight();
+              }
+            }, 300 * i); // Delay each call by 100ms
+          }
         } else {
           console.error("Error fetching events", response.data);
         }
-        
       } catch (error) {
         console.error("Error fetching todos", error);
       }
     }
-  
+
     getData();
   }, []);
-  
+
   // useEffect(() => {
   //   // Store tasks in localStorage whenever tasks state changes
   //   if (tasks && Object.keys(tasks).length > 0) {
@@ -116,7 +125,13 @@ export function HorizontalSliderweek({ isSidebarOpen, addevent }) {
   const [currentWeek, setCurrentWeek] = useState(
     startWeek(new Date(), { weekStartsOn: 1 })
   );
-  
+
+  // const today = new Date();
+  // let dayOfWeek = getDay(today);
+  // dayOfWeek = dayOfWeek === 0 ? 7 : dayOfWeek;
+  // for(var i = 1; i<dayOfWeek;i++){
+  //   scrollRight();
+  // }
 
   const getFormattedDate = (date) => format(date, "yyyy-MM-dd");
 
@@ -127,7 +142,7 @@ export function HorizontalSliderweek({ isSidebarOpen, addevent }) {
     const formattedDate = getFormattedDate(date);
     const datetosend = formattedDate + "T00:00:00Z";
     if (task) {
-      var toastId=null;
+      var toastId = null;
       try {
         toastId = toast.loading("Adding a new week task");
         const response = await axios.post(
@@ -154,7 +169,7 @@ export function HorizontalSliderweek({ isSidebarOpen, addevent }) {
         //console.log(d);
         setTasks((prevTasks) => ({
           ...prevTasks,
-          [d]: [...(prevTasks[d] || []), { task: t, completed: false,id }],
+          [d]: [...(prevTasks[d] || []), { task: t, completed: false, id }],
         }));
       } catch (e) {
         toast.error("Failed to add task", { id: toastId });
@@ -163,7 +178,7 @@ export function HorizontalSliderweek({ isSidebarOpen, addevent }) {
     }
   };
 
-  const toggleTaskCompletion = async(date, taskIndex, completed, id) => {
+  const toggleTaskCompletion = async (date, taskIndex, completed, id) => {
     setDummytasks(tasks);
     setTasks((prevTasks) => {
       const updatedTasksForDate = prevTasks[date].map((task, index) =>
@@ -174,26 +189,26 @@ export function HorizontalSliderweek({ isSidebarOpen, addevent }) {
         [date]: updatedTasksForDate,
       };
     });
-    var toastId=null;
-    try{
-      toastId = toast.loading(`Setting task as ${!completed?"completed":"incomplete"}`);
+    var toastId = null;
+    try {
+      toastId = toast.loading(
+        `Setting task as ${!completed ? "completed" : "incomplete"}`
+      );
       const response = await axios.post(
         "https://honoprisma.codessahil.workers.dev/updateweekevent",
         {
-          id:id,
+          id: id,
           completed: !completed,
         },
         {
           headers: {
-            Authorization: `Bearer ${localStorage.getItem(
-              "token"
-            )}`,
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
             "Content-Type": "application/json",
           },
         }
       );
       toast.success("Task updated", { id: toastId });
-    }catch(err){
+    } catch (err) {
       toast.error("Failed to update task");
       setTasks(dummytasks);
     }
@@ -206,7 +221,7 @@ export function HorizontalSliderweek({ isSidebarOpen, addevent }) {
   // Scroll to the left
   const scrollLeft = () => {
     containerRef.current.scrollBy({
-      left: -200, // Adjust scroll distance
+      left: -300, // Adjust scroll distance
       behavior: "smooth",
     });
   };
@@ -214,20 +229,18 @@ export function HorizontalSliderweek({ isSidebarOpen, addevent }) {
   // Scroll to the right
   const scrollRight = () => {
     containerRef.current.scrollBy({
-      left: 200, // Adjust scroll distance
+      left: 300, // Adjust scroll distance
       behavior: "smooth",
     });
   };
   const scrollRightless = () => {
-    if(containerRef.current){
+    if (containerRef.current) {
       containerRef.current.scrollBy({
-        left: 40, 
+        left: 40,
         behavior: "smooth",
       });
     }
-    
   };
-
 
   const LoadingIndicator = () => (
     <div className="relative inset-0 flex items-center justify-center bg-mybg bg-opacity-50 z-50">
@@ -293,40 +306,49 @@ export function HorizontalSliderweek({ isSidebarOpen, addevent }) {
                               type="checkbox"
                               checked={task.completed}
                               onChange={() =>
-                                toggleTaskCompletion(formattedDate, idx, task.completed, task.id)
-
+                                toggleTaskCompletion(
+                                  formattedDate,
+                                  idx,
+                                  task.completed,
+                                  task.id
+                                )
                               }
                               className="mr-2"
                             />
-                            
-                            <button onClick={async()=>{
-                              const toastId = toast.loading("Deleting week task");
-                              
-                              const response = await axios.post(
-                                "https://honoprisma.codessahil.workers.dev/deleteweektask",
-                                {
-                                  id:task.id
-                                },
-                                {
-                                  headers: {
-                                    Authorization: `Bearer ${localStorage.getItem(
-                                      "token"
-                                    )}`,
-                                    "Content-Type": "application/json",
+
+                            <button
+                              onClick={async () => {
+                                const toastId =
+                                  toast.loading("Deleting week task");
+
+                                const response = await axios.post(
+                                  "https://honoprisma.codessahil.workers.dev/deleteweektask",
+                                  {
+                                    id: task.id,
                                   },
-                                }
-                              );
-                              toast.success("Task deleted!", { id: toastId });
-                              setTasks((prevTasks) => {
-                                const updatedTasks = prevTasks[formattedDate].filter((x) => x.id !== task.id);
-                          
-                                return {
-                                  ...prevTasks,
-                                  [formattedDate]: updatedTasks, // Update tasks for the specific date
-                                };
-                              });
-                              setrender(x=>!x);
-                            }}>
+                                  {
+                                    headers: {
+                                      Authorization: `Bearer ${localStorage.getItem(
+                                        "token"
+                                      )}`,
+                                      "Content-Type": "application/json",
+                                    },
+                                  }
+                                );
+                                toast.success("Task deleted!", { id: toastId });
+                                setTasks((prevTasks) => {
+                                  const updatedTasks = prevTasks[
+                                    formattedDate
+                                  ].filter((x) => x.id !== task.id);
+
+                                  return {
+                                    ...prevTasks,
+                                    [formattedDate]: updatedTasks, // Update tasks for the specific date
+                                  };
+                                });
+                                setrender((x) => !x);
+                              }}
+                            >
                               <svg
                                 xmlns="http://www.w3.org/2000/svg"
                                 fill="none"
