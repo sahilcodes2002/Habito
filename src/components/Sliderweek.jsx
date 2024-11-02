@@ -30,6 +30,7 @@ export function HorizontalSliderweek({ isSidebarOpen, addevent }) {
   
   const containerRef = useRef(null);
   const [tasks, setTasks] = useState([]);
+  const [dummytasks, setDummytasks] = useState([]);
   //const [isLoading, setisLoading] = useState(false);
   useEffect(() => {
     async function getData() {
@@ -162,7 +163,8 @@ export function HorizontalSliderweek({ isSidebarOpen, addevent }) {
     }
   };
 
-  const toggleTaskCompletion = (date, taskIndex) => {
+  const toggleTaskCompletion = async(date, taskIndex, completed, id) => {
+    setDummytasks(tasks);
     setTasks((prevTasks) => {
       const updatedTasksForDate = prevTasks[date].map((task, index) =>
         index === taskIndex ? { ...task, completed: !task.completed } : task
@@ -172,6 +174,29 @@ export function HorizontalSliderweek({ isSidebarOpen, addevent }) {
         [date]: updatedTasksForDate,
       };
     });
+    var toastId=null;
+    try{
+      toastId = toast.loading(`Setting task as ${!completed?"completed":"incomplete"}`);
+      const response = await axios.post(
+        "http://127.0.0.1:8787/updateweekevent",
+        {
+          id:id,
+          completed: !completed,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem(
+              "token"
+            )}`,
+            "Content-Type": "application/json",
+          },
+        }
+      );
+      toast.success("Task updated", { id: toastId });
+    }catch(err){
+      toast.error("Failed to update task");
+      setTasks(dummytasks);
+    }
   };
 
   const handleSelectSlot = (slotInfo) => {
@@ -268,7 +293,8 @@ export function HorizontalSliderweek({ isSidebarOpen, addevent }) {
                               type="checkbox"
                               checked={task.completed}
                               onChange={() =>
-                                toggleTaskCompletion(formattedDate, idx)
+                                toggleTaskCompletion(formattedDate, idx, task.completed, task.id)
+
                               }
                               className="mr-2"
                             />
