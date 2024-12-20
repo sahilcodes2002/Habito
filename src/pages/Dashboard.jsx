@@ -217,7 +217,7 @@ function Xyz({
                 ></MyCalendar>
               </div>
 
-              <div className="hidden md:block px-2 mt-8 smd:mt-0">
+              <div className="hidden flex-1 md:block px-2 mt-8 smd:mt-0">
                 {/* <WeekCalendar addevent={addevent}></WeekCalendar> */}
                 <div className="flex justify-center">
                   <div
@@ -837,10 +837,10 @@ function Container1({ x }) {
       onClick={() => {
         navigate(`/project/${x.project_id}`);
       }}
-      className="z-0 bg-blue-600 rounded-lg cursor-pointer"
+      className="z-0 bg-blue-200 rounded-lg cursor-pointer shadow-lg"
     >
       <div className="px-8 ml-1 py-2 h-full flex justify-center space-x-10 bg-white rounded-md">
-        <div className="flex flex-col text-green-700 justify-center space-x-4">
+        <div className="flex flex-col text-green-200 justify-center space-x-4">
           {/* <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -855,8 +855,9 @@ function Container1({ x }) {
               d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
             />
           </svg> */}
-          <div className="cursor-pointer">
-            <img className="h-8 w-8 mr-6" src={mailicon} alt="team up" />
+          <div className="cursor-pointer fill-green-300">
+            {/* <img className="h-8 w-8 mr-6" src={mailicon} alt="team up" /> */}
+            <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 24 24"><path  d="M17.954 4.1a2.077 2.077 0 0 1 2.938 2.938a.76.76 0 0 0-.072.084l-4.181 4.18a.672.672 0 0 1-.95-.95l3.834-3.823a.75.75 0 1 0-1.06-1.062L14.63 9.291a2.17 2.17 0 1 0 3.07 3.07l4.325-4.323a.755.755 0 0 0 .1-.124a3.577 3.577 0 0 0-5.23-4.874l-3.678 3.678a.75.75 0 1 0 1.06 1.06L17.954 4.1Zm-4.872 7.476l-1.086.572L3.5 7.676v-.428l.006-.144A1.75 1.75 0 0 1 5.25 5.498h7.772L14.521 4H5.248l-.185.005A3.249 3.249 0 0 0 2 7.248v9.496l.005.184a3.249 3.249 0 0 0 3.244 3.064h13.495l.184-.005a3.249 3.249 0 0 0 3.064-3.243V9.482l-1.499 1.5v5.762l-.006.143a1.75 1.75 0 0 1-1.743 1.606H5.249l-.144-.006A1.75 1.75 0 0 1 3.5 16.744V9.37l8.148 4.288l.096.042a.75.75 0 0 0 .602-.042l1.427-.751a3.152 3.152 0 0 1-.69-1.332Z"/></svg>
           </div>
         </div>
         <div className="bg-slate-200 w-1 min-h-max rounded-lg"> </div>
@@ -1457,7 +1458,6 @@ function Sceleton() {
 
 
 
-
 // import { useEffect, useRef, useState } from "react";
 // import axios from "axios";
 // import mailicon from "../images/mailicon.png";
@@ -1542,7 +1542,6 @@ function Sceleton() {
 //   if (loading) {
 //     return (
 //       <div>
-        
 //         <LoadingIndicator></LoadingIndicator>
 //       </div>
 //     );
@@ -1706,7 +1705,13 @@ function Sceleton() {
 //                 </div>
 //               </div>
 //             </div>
-//             <div className="mx-5 smd:flex smd:justify-evenly">
+//             <div
+//               className={`${
+//                 isSidebarOpen
+//                   ? "pl-48 mx-5 smd:flex smd:justify-evenly "
+//                   : "mx-5 smd:flex smd:justify-evenly"
+//               } rounded-md `}
+//             >
 //               <div className="mb-2 smd:mb-0">
 //                 <Button1></Button1>
 //               </div>
@@ -2199,7 +2204,9 @@ function Sceleton() {
 //         className="overflow-x-auto flex space-x-4 p-10 scrollbar-hide" // Use Tailwind classes
 //         style={{ scrollBehavior: "smooth" }} // Smooth scroll behavior
 //       >
-//       {work.length==0 && projectwork.length==0 && <Container0></Container0>}
+//         {work.length == 0 && projectwork.length == 0 && (
+//           <Container0></Container0>
+//         )}
 //         {work.map((x) => {
 //           //console.log(work);
 //           return <Container1 x={x}></Container1>;
@@ -2231,13 +2238,15 @@ function Sceleton() {
 //   );
 // };
 
-
 // function Container0() {
 //   const navigate = useNavigate();
 //   return (
-//     <div onClick={()=>{
-//       //navigate(`/project/${x.project_id}`)
-//     }} className="z-0 bg-blue-600 rounded-lg cursor-pointer">
+//     <div
+//       onClick={() => {
+//         //navigate(`/project/${x.project_id}`)
+//       }}
+//       className="z-0 bg-blue-600 rounded-lg cursor-pointer"
+//     >
 //       <div className="px-8 ml-1 py-2 h-full flex justify-center space-x-10 bg-white rounded-md">
 //         <div className="flex flex-col text-green-700 justify-center space-x-4">
 //           {/* <svg
@@ -2255,41 +2264,41 @@ function Sceleton() {
 //             />
 //           </svg> */}
 //           <div className="cursor-pointer">
-//           <svg
-//             xmlns="http://www.w3.org/2000/svg"
-//             fill="none"
-//             viewBox="0 0 24 24"
-//             stroke-width="1.5"
-//             stroke="currentColor"
-//             class="size-6"
-//           >
-//             <path
-//               stroke-linecap="round"
-//               stroke-linejoin="round"
-//               d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"
-//             />
-//           </svg>
+//             <svg
+//               xmlns="http://www.w3.org/2000/svg"
+//               fill="none"
+//               viewBox="0 0 24 24"
+//               stroke-width="1.5"
+//               stroke="currentColor"
+//               class="size-6"
+//             >
+//               <path
+//                 stroke-linecap="round"
+//                 stroke-linejoin="round"
+//                 d="M12 9v3.75m-9.303 3.376c-.866 1.5.217 3.374 1.948 3.374h14.71c1.73 0 2.813-1.874 1.948-3.374L13.949 3.378c-.866-1.5-3.032-1.5-3.898 0L2.697 16.126ZM12 15.75h.007v.008H12v-.008Z"
+//               />
+//             </svg>
 //           </div>
 //         </div>
 //         <div className="bg-slate-200 w-1 min-h-max rounded-lg"> </div>
 //         <div className="flex flex-col justify-center px-2">
 //           <div className="text-xs text-gray-600 ">Nothing</div>
-//           <div className="text-sm text-gray-600  text-center">
-//             here
-//           </div>
+//           <div className="text-sm text-gray-600  text-center">here</div>
 //         </div>
 //       </div>
 //     </div>
 //   );
 // }
 
-
 // function Container1({ x }) {
 //   const navigate = useNavigate();
 //   return (
-//     <div onClick={()=>{
-//       navigate(`/project/${x.project_id}`)
-//     }} className="z-0 bg-blue-600 rounded-lg cursor-pointer">
+//     <div
+//       onClick={() => {
+//         navigate(`/project/${x.project_id}`);
+//       }}
+//       className="z-0 bg-blue-600 rounded-lg cursor-pointer"
+//     >
 //       <div className="px-8 ml-1 py-2 h-full flex justify-center space-x-10 bg-white rounded-md">
 //         <div className="flex flex-col text-green-700 justify-center space-x-4">
 //           {/* <svg
@@ -2307,11 +2316,7 @@ function Sceleton() {
 //             />
 //           </svg> */}
 //           <div className="cursor-pointer">
-//             <img
-//               className="h-8 w-8 mr-6"
-//               src={mailicon}
-//               alt="team up"
-//             />
+//             <img className="h-8 w-8 mr-6" src={mailicon} alt="team up" />
 //           </div>
 //         </div>
 //         <div className="bg-slate-200 w-1 min-h-max rounded-lg"> </div>
@@ -2327,11 +2332,14 @@ function Sceleton() {
 // }
 
 // function Container({ x }) {
-//   const navigate  = useNavigate();
+//   const navigate = useNavigate();
 //   return (
-//     <div onClick={()=>{
-//       navigate(`/project/${x.id}`)
-//     }} className="z-0 bg-blue-200 rounded-lg cursor-pointer">
+//     <div
+//       onClick={() => {
+//         navigate(`/project/${x.id}`);
+//       }}
+//       className="z-0 bg-blue-200 rounded-lg cursor-pointer"
+//     >
 //       <div className="px-8 ml-1 py-2 flex justify-center h-full space-x-10 bg-white rounded-md">
 //         <div className="flex flex-col justify-center space-x-4">
 //           {/* <svg
@@ -2349,11 +2357,7 @@ function Sceleton() {
 //             />
 //           </svg> */}
 //           <div className="cursor-pointer">
-//             <img
-//               className="h-8 w-8 mr-6"
-//               src={projecticon}
-//               alt="team up"
-//             />
+//             <img className="h-8 w-8 mr-6" src={projecticon} alt="team up" />
 //           </div>
 //         </div>
 //         <div className="bg-slate-200 w-1 min-h-max rounded-lg"> </div>
@@ -2451,11 +2455,7 @@ function Sceleton() {
 //               <a className="flex items-center justify-center p-2 rounded-lg text-white  group">
 //                 <div className="flex space-x-0">
 //                   <span className="flex flex-col justify-center">
-//                     <img
-//                       className="h-6 w-6"
-//                       src={design}
-//                       alt="Design"
-//                     />
+//                     <img className="h-6 w-6" src={design} alt="Design" />
 //                   </span>
 //                   <span className="ms-3 text-3xl text-mytext">abito</span>
 //                 </div>
@@ -2914,3 +2914,6 @@ function Sceleton() {
 // //   </div>
 // // </div>
 // // }
+
+
+
