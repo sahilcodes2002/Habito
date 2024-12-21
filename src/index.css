@@ -25,29 +25,30 @@
   }
   
   .rbc-header:first-child {
-    @apply bg-green-600 !important; /* Sunday */
+    @apply bg-blue-400 !important; /* Sunday */
   }
   
   .rbc-header:nth-child(2) {
-    @apply bg-green-500 !important; /* Monday */
+    @apply bg-blue-400 !important; /* Monday */
   }
   
   .rbc-header:nth-child(3) {
-    @apply bg-green-400 !important; /* Tuesday */
+    @apply bg-blue-400 !important; /* Tuesday */
   }
   .rbc-header:nth-child(4) {
-    @apply bg-green-400 !important; /* Tuesday */
+    @apply bg-blue-400 !important; /* Tuesday */
   }
   .rbc-header:nth-child(5) {
-    @apply bg-green-400 !important; /* Tuesday */
+    @apply bg-blue-400 !important; /* Tuesday */
   }
   .rbc-header:nth-child(6) {
-    @apply bg-green-500 !important; /* Tuesday */
+    @apply bg-blue-400 !important; /* Tuesday */
   }
   .rbc-header:nth-child(7) {
-    @apply bg-green-600 !important; /* Tuesday */
+    @apply bg-blue-400 !important; /* Tuesday */
   }
 
+  
 
   /* Hide the scrollbar */
 .scrollbar-hide::-webkit-scrollbar {
