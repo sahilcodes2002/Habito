@@ -36,11 +36,11 @@ export const Dashboardnotes = () => {
           ></Topbarlogin>
         </div>
 
-        <div className="flex justify-center mt-5">
+        {/* <div className="flex justify-center mt-5">
           <div className="flex flex-col justify-center">
           <div className="text-3xl">Important Stuff</div>
           </div>
-        </div>
+        </div> */}
       </div>
       {/* <div className="text-black">
     hi
