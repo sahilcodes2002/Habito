@@ -8,7 +8,6 @@
 // // import Design from "../images/Design.jpg"
 // // import { info } from "../store/atoms/userinfo";
 
-
 // // export function Createtask() {
 // //   const [isSidebarOpen, setSidebarOpen] = useState(false);
 // //   const [showdel, setshowdel] = useState(false);
@@ -57,8 +56,6 @@
 // //     </div>
 // // );
 // // }
-
-
 
 // // function Sidebar({ isSidebarOpen }) {
 // //   const navigate = useNavigate();
@@ -373,13 +370,6 @@
 // //   );
 // // }
 
-
-
-
-
-
-
-
 // // function Createtaskbaby() {
 
 // //     return (
@@ -404,7 +394,7 @@
 // //         id:null,
 // //         isparent:null
 // //     });
-    
+
 // //     const addTask = (parentId = null) => {
 // //         const newTask = {
 // //             id: Date.now(),
@@ -474,7 +464,6 @@
 // //         const updatedTasks = updateTaskField(tasks, taskId, field, value);
 // //         setTasks(updatedTasks);
 // //     };
-
 
 // //     const renderTasks = (taskList, parentId = null) => {
 // //         //var discription = false;
@@ -554,9 +543,9 @@
 // //           <div className="w-16 h-16 border-t-4 border-blue-500 border-solid rounded-full animate-spin"></div>
 // //         </div>
 // //       );
-      
+
 // //     function handleCreateProject() {
-        
+
 // //         if(projectName==''){
 // //           alert('give a name to your task');
 // //           return;
@@ -571,7 +560,7 @@
 // //                 work: task.title,
 // //                 description: task.description,
 // //                 completed:false,
-// //                 assignto: allinfo.id, 
+// //                 assignto: allinfo.id,
 // //                 subtasks: task.subtasks.map(subtask => ({
 // //                     subwork: subtask.title,
 // //                     subdescription: subtask.description,
@@ -580,7 +569,7 @@
 // //                 }))
 // //             }))
 // //         };
-    
+
 // //         axios.post('https://honoprisma.codessahil.workers.dev/createproject', projectData, {
 // //             headers: {
 // //                 Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -599,7 +588,6 @@
 // //             setLoading(false);
 // //         });
 // //     }
-    
 
 // //     return (
 // //         <div className="p-4 pt-12">
@@ -616,7 +604,7 @@
 // //             <hr className=" mt-2"></hr>
 // //             <hr></hr>
 // //             <hr></hr>
-            
+
 // //             <div className="overflow-y-auto">
 // //                 {renderTasks(tasks)}
 // //                 <div className="">
@@ -633,7 +621,6 @@
 // //     );
 // // }
 
-
 // import { Button } from "../components/Button";
 // import { Topbarlogin } from "../components/Topbarlogin";
 // import React, { useEffect, useState } from 'react';
@@ -642,12 +629,10 @@
 // import { useRecoilValue } from "recoil";
 // import { useNavigate } from "react-router-dom";
 
-
-
 // export function Createtask(){
 //     const [isSidebarOpen, setSidebarOpen] = useState(false);
 //     const navigate = useNavigate();
-  
+
 //   const toggleSidebar = () => {
 //     setSidebarOpen(!isSidebarOpen);
 //   };
@@ -660,12 +645,12 @@
 
 //   return (
 //     <div>
-      
+
 //       <div className="fixed right-0 left-0 top-0">
 //       <div className="smd:ml-48 md:ml-64">
 //       <Topbarlogin></Topbarlogin>
 //       </div>
-      
+
 //         <div>
 //         <button onClick={toggleSidebar} data-drawer-target="separator-sidebar" data-drawer-toggle="separator-sidebar" aria-controls="separator-sidebar" type="button" className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
 //           <span className="sr-only">Open sidebar</span>
@@ -675,7 +660,6 @@
 //         </button>
 //         </div>
 //         </div>
-
 
 //         <aside id="separator-sidebar" className={`fixed top-0 left-0 z-40 w-48 md:w-64 h-screen transition-transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} sm:translate-x-0`} aria-label="Sidebar">
 //         <div className="flex flex-col justify-between h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
@@ -993,11 +977,9 @@
 //           </div>
 //         </div>
 //     </div>
-    
+
 //   );
 // }
-
-
 
 // function Createtaskbaby() {
 
@@ -1023,7 +1005,7 @@
 //         id:null,
 //         isparent:null
 //     });
-    
+
 //     const addTask = (parentId = null) => {
 //         const newTask = {
 //             id: Date.now(),
@@ -1093,7 +1075,6 @@
 //         const updatedTasks = updateTaskField(tasks, taskId, field, value);
 //         setTasks(updatedTasks);
 //     };
-
 
 //     const renderTasks = (taskList, parentId = null) => {
 //         //var discription = false;
@@ -1173,9 +1154,9 @@
 //           <div className="w-16 h-16 border-t-4 border-blue-500 border-solid rounded-full animate-spin"></div>
 //         </div>
 //       );
-      
+
 //     function handleCreateProject() {
-        
+
 //         if(projectName==''){
 //           alert('give a name to your task');
 //           return;
@@ -1190,7 +1171,7 @@
 //                 work: task.title,
 //                 description: task.description,
 //                 completed:false,
-//                 assignto: allinfo.id, 
+//                 assignto: allinfo.id,
 //                 subtasks: task.subtasks.map(subtask => ({
 //                     subwork: subtask.title,
 //                     subdescription: subtask.description,
@@ -1199,7 +1180,7 @@
 //                 }))
 //             }))
 //         };
-    
+
 //         axios.post('https://honoprisma.codessahil.workers.dev/createproject', projectData, {
 //             headers: {
 //                 Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -1218,7 +1199,6 @@
 //             setLoading(false);
 //         });
 //     }
-    
 
 //     return (
 //         <div className="p-4 pt-12">
@@ -1235,7 +1215,7 @@
 //             <hr className=" mt-2"></hr>
 //             <hr></hr>
 //             <hr></hr>
-            
+
 //             <div className="overflow-y-auto">
 //                 {renderTasks(tasks)}
 //                 <div className="">
@@ -1252,8 +1232,6 @@
 //     );
 // }
 
-
-
 // import { Button } from "../components/Button";
 // import { Topbarlogin } from "../components/Topbarlogin";
 // import React, { useEffect, useState } from 'react';
@@ -1263,7 +1241,6 @@
 // import { useNavigate } from "react-router-dom";
 // import Design from "../images/Design.jpg"
 // import { info } from "../store/atoms/userinfo";
-
 
 // export function Createtask() {
 //   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -1313,8 +1290,6 @@
 //     </div>
 // );
 // }
-
-
 
 // function Sidebar({ isSidebarOpen }) {
 //   const navigate = useNavigate();
@@ -1629,13 +1604,6 @@
 //   );
 // }
 
-
-
-
-
-
-
-
 // function Createtaskbaby() {
 
 //     return (
@@ -1660,7 +1628,7 @@
 //         id:null,
 //         isparent:null
 //     });
-    
+
 //     const addTask = (parentId = null) => {
 //         const newTask = {
 //             id: Date.now(),
@@ -1730,7 +1698,6 @@
 //         const updatedTasks = updateTaskField(tasks, taskId, field, value);
 //         setTasks(updatedTasks);
 //     };
-
 
 //     const renderTasks = (taskList, parentId = null) => {
 //         //var discription = false;
@@ -1810,9 +1777,9 @@
 //           <div className="w-16 h-16 border-t-4 border-blue-500 border-solid rounded-full animate-spin"></div>
 //         </div>
 //       );
-      
+
 //     function handleCreateProject() {
-        
+
 //         if(projectName==''){
 //           alert('give a name to your task');
 //           return;
@@ -1827,7 +1794,7 @@
 //                 work: task.title,
 //                 description: task.description,
 //                 completed:false,
-//                 assignto: allinfo.id, 
+//                 assignto: allinfo.id,
 //                 subtasks: task.subtasks.map(subtask => ({
 //                     subwork: subtask.title,
 //                     subdescription: subtask.description,
@@ -1836,7 +1803,7 @@
 //                 }))
 //             }))
 //         };
-    
+
 //         axios.post('https://honoprisma.codessahil.workers.dev/createproject', projectData, {
 //             headers: {
 //                 Authorization: `Bearer ${localStorage.getItem("token")}`,
@@ -1855,7 +1822,6 @@
 //             setLoading(false);
 //         });
 //     }
-    
 
 //     return (
 //         <div className="p-4 pt-12">
@@ -1872,7 +1838,7 @@
 //             <hr className=" mt-2"></hr>
 //             <hr></hr>
 //             <hr></hr>
-            
+
 //             <div className="overflow-y-auto">
 //                 {renderTasks(tasks)}
 //                 <div className="">
@@ -1889,21 +1855,19 @@
 //     );
 // }
 
-
 import { Button } from "../components/Button";
 import { Topbarlogin } from "../components/Topbarlogin";
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { info} from "../store/atoms/userinfo";
+import React, { useEffect, useState, useRef } from "react";
+import axios from "axios";
+import { info } from "../store/atoms/userinfo";
 import { useRecoilValue, useRecoilState } from "recoil";
 import { useNavigate } from "react-router-dom";
 import design from "../images/Design.jpg";
 
-
 // export function Createtask(){
 //     const [isSidebarOpen, setSidebarOpen] = useState(false);
 //     const navigate = useNavigate();
-  
+
 //   const toggleSidebar = () => {
 //     setSidebarOpen(!isSidebarOpen);
 //   };
@@ -1916,12 +1880,12 @@ import design from "../images/Design.jpg";
 
 //   return (
 //     <div>
-      
+
 //       <div className="fixed right-0 left-0 top-0">
 //       <div className="smd:ml-48 md:ml-64">
 //       <Topbarlogin></Topbarlogin>
 //       </div>
-      
+
 //         <div>
 //         <button onClick={toggleSidebar} data-drawer-target="separator-sidebar" data-drawer-toggle="separator-sidebar" aria-controls="separator-sidebar" type="button" className="inline-flex items-center p-2 mt-2 ms-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
 //           <span className="sr-only">Open sidebar</span>
@@ -1931,7 +1895,6 @@ import design from "../images/Design.jpg";
 //         </button>
 //         </div>
 //         </div>
-
 
 //         <aside id="separator-sidebar" className={`fixed top-0 left-0 z-40 w-48 md:w-64 h-screen transition-transform ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full'} sm:translate-x-0`} aria-label="Sidebar">
 //         <div className="flex flex-col justify-between h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
@@ -2249,10 +2212,9 @@ import design from "../images/Design.jpg";
 //           </div>
 //         </div>
 //     </div>
-    
+
 //   );
 // }
-
 
 export function Createtask() {
   const [isSidebarOpen, setSidebarOpen] = useState(false);
@@ -2265,46 +2227,46 @@ export function Createtask() {
 
   return (
     <div className="">
-        <div
-            className={`fixed right-0  top-0 z-50  ${isSidebarOpen ? "left-48" : "left-0"
-                }`}
-        >
-            <div className="z-40">
-                <Topbarlogin
-                    isSidebarOpen={isSidebarOpen}
-                    toggleSidebar={toggleSidebar}
-                ></Topbarlogin>
-            </div>
-
-            <div></div>
+      <div
+        className={`fixed right-0  top-0 z-50  ${
+          isSidebarOpen ? "left-48" : "left-0"
+        }`}
+      >
+        <div className="z-40">
+          <Topbarlogin
+            isSidebarOpen={isSidebarOpen}
+            toggleSidebar={toggleSidebar}
+          ></Topbarlogin>
         </div>
-        {/* <div className="text-black">
+
+        <div></div>
+      </div>
+      {/* <div className="text-black">
     hi
   </div> */}
-        <div className="">
-            <div className="z-50">
-                <Sidebar isSidebarOpen={isSidebarOpen}></Sidebar>
+      <div className="">
+        <div className="z-50">
+          <Sidebar isSidebarOpen={isSidebarOpen}></Sidebar>
 
-                <div
-                    className="z-0 bg-mybg min-h-screen"
-                    onClick={() => {
-                        setSidebarOpen(false);
-                    }}
-                >
-                    <div className={`${
-          isSidebarOpen ? "pl-48 rounded-md " : "mb-0 rounded-md "
-        }`}>
-                        <Createtaskbaby></Createtaskbaby>
-                    </div>
-                </div>
+          <div
+            className="z-0 bg-mybg min-h-screen"
+            onClick={() => {
+              setSidebarOpen(false);
+            }}
+          >
+            <div
+              className={`${
+                isSidebarOpen ? "pl-48 rounded-md " : "mb-0 rounded-md "
+              }`}
+            >
+              <Createtaskbaby></Createtaskbaby>
             </div>
+          </div>
         </div>
+      </div>
     </div>
-);
+  );
 }
-
-
-
 
 function Sidebar({ isSidebarOpen }) {
   const navigate = useNavigate();
@@ -2319,8 +2281,6 @@ function Sidebar({ isSidebarOpen }) {
       <div className="flex flex-col justify-between h-full px-3 pt-1 pb-4 overflow-y-auto bg-mytitlebar">
         <div>
           <ul className="cursor-pointer space-y-2 font-medium">
-            
-
             {/* <li>
               <a
                 onClick={() => {
@@ -2339,7 +2299,7 @@ function Sidebar({ isSidebarOpen }) {
                 
               </a>
             </li> */}
-              <li className="mt-2">
+            <li className="mt-2">
               <a
                 onClick={() => {
                   navigate("/dashboard");
@@ -2347,7 +2307,7 @@ function Sidebar({ isSidebarOpen }) {
                 className="flex items-center p-2 text-mytext rounded-lg  hover:bg-mytextbg hover:text-white  group fill-mytext hover:fill-[#ffffff]"
               >
                 <svg
-                className="flex-shrink-0 w-5 h-5  transition duration-75  group-hover:text-white "
+                  className="flex-shrink-0 w-5 h-5  transition duration-75  group-hover:text-white "
                   xmlns="http://www.w3.org/2000/svg"
                   fill="peach"
                   viewBox="0 0 24 24"
@@ -2729,264 +2689,320 @@ function Sidebar({ isSidebarOpen }) {
 // </div>
 // }
 
-
-
-
-
-
-
-
-
-
 function Createtaskbaby() {
-
-    return (
-        <div>
-          <div className="z-30">
-            < Topbarlogin />
-            </div>
-            <div className="z-10">
-                <TaskManager />
-            </div>
-        </div>
-    );
+  return (
+    <div>
+      <div className="z-30">
+        <Topbarlogin />
+      </div>
+      <div className="z-10">
+        <TaskManager />
+      </div>
+    </div>
+  );
 }
 
 function TaskManager() {
-    const navigate = useNavigate();
-    const allinfo = useRecoilValue(info);
-    const [projectName, setProjectName] = useState('');
-    const [tasks, setTasks] = useState([]);
-    const [loading , setLoading] = useState(false);
-    const [refresh , setRefresh] = useState({
-        id:null,
-        isparent:null
-    });
-    
-    const addTask = (parentId = null) => {
-        const newTask = {
-            id: Date.now(),
-            title: '',
-            completed: false,
-            subtasks: [],
-            description: '',
-        };
+  const navigate = useNavigate();
+  const allinfo = useRecoilValue(info);
+  const [projectName, setProjectName] = useState("");
+  const [tasks, setTasks] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [refresh, setRefresh] = useState({
+    id: null,
+    isparent: null,
+  });
+  const inputRef = useRef(null);
+  useEffect(() => { inputRef.current.focus(); }, []);
 
-        if (parentId === null) {
-            setTasks([...tasks, newTask]);
-        } else {
-            const updatedTasks = tasks.map(task =>
-                task.id === parentId
-                    ? { ...task, subtasks: [...task.subtasks, newTask] }
-                    : task
-            );
-            setTasks(updatedTasks);
-        }
+  const addTask = (parentId = null) => {
+    const newTask = {
+      id: Date.now(),
+      title: "",
+      completed: false,
+      subtasks: [],
+      description: "",
     };
 
-    const deleteTask = (id, parentId = null) => {
-        const deleteTaskById = (taskList) => taskList.filter(task => task.id !== id);
-
-        if (parentId === null) {
-            setTasks(deleteTaskById(tasks));
-        } else {
-            const updatedTasks = tasks.map(task =>
-                task.id === parentId
-                    ? { ...task, subtasks: deleteTaskById(task.subtasks) }
-                    : task
-            );
-            setTasks(updatedTasks);
-        }
-    };
-
-    const handleCompletion = (id, parentId = null) => {
-        const toggleTaskCompletion = (taskList) => taskList.map(task =>
-            task.id === id ? { ...task, completed: !task.completed } : task
-        );
-
-        if (parentId === null) {
-            setTasks(toggleTaskCompletion(tasks));
-        } else {
-            const updatedTasks = tasks.map(task =>
-                task.id === parentId
-                    ? { ...task, subtasks: toggleTaskCompletion(task.subtasks) }
-                    : task
-            );
-            setTasks(updatedTasks);
-        }
-    };
-
-    const updateTaskField = (taskList, taskId, field, value) => {
-        return taskList.map(task => {
-            if (task.id === taskId) {
-                return { ...task, [field]: value };
-            }
-            if (task.subtasks.length > 0) {
-                return { ...task, subtasks: updateTaskField(task.subtasks, taskId, field, value) };
-            }
-            return task;
-        });
-    };
-
-    const handleFieldChange = (taskId, field, value) => {
-        const updatedTasks = updateTaskField(tasks, taskId, field, value);
-        setTasks(updatedTasks);
-    };
-
-
-    const renderTasks = (taskList, parentId = null) => {
-        //var discription = false;
-        return (
-            <div className={`z-10 ml-${parentId ? '10' : '0'}`}>
-                {taskList.map(task => (
-                    <div
-                        key={task.id}
-                        className={`relative mt-4 p-2 border rounded ${
-                            parentId ? 'bg-gray-100 ml-8' : 'bg-gray-300'
-                        }`}
-                    >
-                        <div className="flex items-center">
-                            <input
-                                type="checkbox"
-                                checked={task.completed}
-                                onChange={() => handleCompletion(task.id, parentId)}
-                            />
-                            <input
-                                type="text"
-                                className="ml-2 p-1 border rounded flex-grow"
-                                placeholder="Task title"
-                                value={task.title}
-                                onChange={(e) => handleFieldChange(task.id, 'title', e.target.value)}
-                            />
-                            <div onClick={()=>{
-                                //discription = !discription
-                                if(refresh.id == task.id){
-                                  setRefresh({
-                                    id:null,
-                                    isparent:null
-                                  })
-                                }
-                                else{
-                                  setRefresh({
-                                    id:task.id,
-                                    isparent:parentId
-                                });
-                                }
-                                //console.log("refreshed");
-                            }}>
-                            {refresh.id !=task.id ? <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="0.5" stroke="currentColor" class="size-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="m19.5 8.25-7.5 7.5-7.5-7.5" />
-</svg>:  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
-  <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 15.75 7.5-7.5 7.5 7.5" />
-</svg>
-}
-
-                            </div>
-                        </div>
-                        <div className={`${refresh.id == task.id?'':'hidden'}`}>
-                        <textarea
-                            className={`${refresh.id == task.id?'':'hidden'}mt-2 p-1 border rounded w-full`}
-                            placeholder="Task description"
-                            value={task.description}
-                            onChange={(e) => handleFieldChange(task.id, 'description', e.target.value)}
-                        />
-                        </div>
-                        <div className="mt-2 flex">
-                            <button onClick={() => deleteTask(task.id, parentId)} className="ml-2 text-sm text-red-500">Delete</button>
-                            {parentId === null && task.subtasks.length == 0 &&(
-                                <button onClick={() => addTask(task.id)} className="ml-2 text-sm text-blue-500">Add Subtask</button>
-                            )}
-                        </div>
-                        {task.subtasks.length > 0 && renderTasks(task.subtasks, task.id)}
-                        {parentId === null && task.subtasks.length > 0 && (
-                                <button onClick={() => addTask(task.id)} className="ml-3 mt-2 text-sm text-blue-500">Add Subtask</button>
-                            )}
-                    </div>
-                ))}
-            </div>
-        );
-    };
-
-    const LoadingIndicator = () => (
-        <div className="fixed inset-0 flex items-center justify-center bg-gray-700 bg-opacity-50 z-50">
-          <div className="w-16 h-16 border-t-4 border-blue-500 border-solid rounded-full animate-spin"></div>
-        </div>
+    if (parentId === null) {
+      setTasks([...tasks, newTask]);
+    } else {
+      const updatedTasks = tasks.map((task) =>
+        task.id === parentId
+          ? { ...task, subtasks: [...task.subtasks, newTask] }
+          : task
       );
-      
-    function handleCreateProject() {
-        
-        if(projectName==''){
-          alert('give a name to your task');
-          return;
-        }
-        setLoading(true);
-        const projectData = {
-            title: projectName,
-            description: '', // You can add a project description here if needed
-            link: '', // Add any project link if necessary
-            folder: 4, // Specify the folder ID if applicable
-            tasks: tasks.map(task => ({
-                work: task.title,
-                description: task.description,
-                completed:false,
-                assignto: allinfo.id, 
-                subtasks: task.subtasks.map(subtask => ({
-                    subwork: subtask.title,
-                    subdescription: subtask.description,
-                    completed:false,
-                    assignto: allinfo.id , // Assign to specific user if needed
-                }))
-            }))
-        };
-    
-        axios.post('https://honoprisma.codessahil.workers.dev/createproject', projectData, {
-            headers: {
-                Authorization: `Bearer ${localStorage.getItem("token")}`,
-                "Content-Type": "application/json",
-            }
-        })
-        .then(response => {
-            //console.log('Project created successfully:', response.data);
-            navigate('/userprojects')
-        })
-        .catch(error => {
-            console.error('Error creating project:', error);
-            // Handle error, such as displaying an error message
-        })
-        .finally(()=>{
-            setLoading(false);
-        });
+      setTasks(updatedTasks);
     }
-    
+  };
 
+  const deleteTask = (id, parentId = null) => {
+    const deleteTaskById = (taskList) =>
+      taskList.filter((task) => task.id !== id);
+
+    if (parentId === null) {
+      setTasks(deleteTaskById(tasks));
+    } else {
+      const updatedTasks = tasks.map((task) =>
+        task.id === parentId
+          ? { ...task, subtasks: deleteTaskById(task.subtasks) }
+          : task
+      );
+      setTasks(updatedTasks);
+    }
+  };
+
+  const handleCompletion = (id, parentId = null) => {
+    const toggleTaskCompletion = (taskList) =>
+      taskList.map((task) =>
+        task.id === id ? { ...task, completed: !task.completed } : task
+      );
+
+    if (parentId === null) {
+      setTasks(toggleTaskCompletion(tasks));
+    } else {
+      const updatedTasks = tasks.map((task) =>
+        task.id === parentId
+          ? { ...task, subtasks: toggleTaskCompletion(task.subtasks) }
+          : task
+      );
+      setTasks(updatedTasks);
+    }
+  };
+
+  const updateTaskField = (taskList, taskId, field, value) => {
+    return taskList.map((task) => {
+      if (task.id === taskId) {
+        return { ...task, [field]: value };
+      }
+      if (task.subtasks.length > 0) {
+        return {
+          ...task,
+          subtasks: updateTaskField(task.subtasks, taskId, field, value),
+        };
+      }
+      return task;
+    });
+  };
+
+  const handleFieldChange = (taskId, field, value) => {
+    const updatedTasks = updateTaskField(tasks, taskId, field, value);
+    setTasks(updatedTasks);
+  };
+
+  const renderTasks = (taskList, parentId = null) => {
+    //var discription = false;
     return (
-        <div className="p-4 pt-12">
-            <label for="first_name" class="block mb-2 text-sm font-medium text-gray-900">Project / Objective / Target</label>
-            <div className="pb-1">
-                <input
-                    type="text"
-                    className="text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
-                    placeholder="Enter title / name..."
-                    value={projectName}
-                    onChange={(e) => setProjectName(e.target.value)}
-                />
+      <div className={`z-10 ml-${parentId ? "10" : "0"}`}>
+        {taskList.map((task) => (
+          <div
+            key={task.id}
+            className={`relative mt-4 p-2 border rounded ${
+              parentId ? "bg-gray-100 ml-8" : "bg-gray-300"
+            }`}
+          >
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                checked={task.completed}
+                onChange={() => handleCompletion(task.id, parentId)}
+              />
+              <input
+                type="text"
+                className="ml-2 p-1 border rounded flex-grow"
+                placeholder="Task title"
+                value={task.title}
+                onChange={(e) =>
+                  handleFieldChange(task.id, "title", e.target.value)
+                }
+              />
+              <div
+                onClick={() => {
+                  //discription = !discription
+                  if (refresh.id == task.id) {
+                    setRefresh({
+                      id: null,
+                      isparent: null,
+                    });
+                  } else {
+                    setRefresh({
+                      id: task.id,
+                      isparent: parentId,
+                    });
+                  }
+                  //console.log("refreshed");
+                }}
+              >
+                {refresh.id != task.id ? (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="0.5"
+                    stroke="currentColor"
+                    class="size-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m19.5 8.25-7.5 7.5-7.5-7.5"
+                    />
+                  </svg>
+                ) : (
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="size-6"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m4.5 15.75 7.5-7.5 7.5 7.5"
+                    />
+                  </svg>
+                )}
+              </div>
             </div>
-            <hr className=" mt-2"></hr>
-            <hr></hr>
-            <hr></hr>
-            
-            <div className="overflow-y-auto">
-                {renderTasks(tasks)}
-                <div className="">
-                    <div className="flex justify-center w-full">
-                        <button onClick={() => addTask()} className="mt-4 p-2 px-6 bg-blue-500 text-white rounded">Add Task</button>
-                    </div>
-                </div>
+            <div className={`${refresh.id == task.id ? "" : "hidden"}`}>
+              <textarea
+                className={`${
+                  refresh.id == task.id ? "" : "hidden"
+                }mt-2 p-1 border rounded w-full`}
+                placeholder="Task description"
+                value={task.description}
+                onChange={(e) =>
+                  handleFieldChange(task.id, "description", e.target.value)
+                }
+              />
             </div>
-            <div className="mt-2">
-                <Button name="Create"  onClick={handleCreateProject} ></Button>
+            <div className="mt-2 flex">
+              <button
+                onClick={() => deleteTask(task.id, parentId)}
+                className="ml-2 text-sm text-red-500"
+              >
+                Delete
+              </button>
+              {parentId === null && task.subtasks.length == 0 && (
+                <button
+                  onClick={() => addTask(task.id)}
+                  className="ml-2 text-sm text-blue-500"
+                >
+                  Add Subtask
+                </button>
+              )}
             </div>
-            {loading && <LoadingIndicator />}
-        </div>
+            {task.subtasks.length > 0 && renderTasks(task.subtasks, task.id)}
+            {parentId === null && task.subtasks.length > 0 && (
+              <button
+                onClick={() => addTask(task.id)}
+                className="ml-3 mt-2 text-sm text-blue-500"
+              >
+                Add Subtask
+              </button>
+            )}
+          </div>
+        ))}
+      </div>
     );
+  };
+
+  const LoadingIndicator = () => (
+    <div className="fixed inset-0 flex items-center justify-center bg-gray-700 bg-opacity-50 z-50">
+      <div className="w-16 h-16 border-t-4 border-blue-500 border-solid rounded-full animate-spin"></div>
+    </div>
+  );
+
+  function handleCreateProject() {
+    if (projectName == "") {
+      alert("give a name to your task");
+      return;
+    }
+    setLoading(true);
+    const projectData = {
+      title: projectName,
+      description: "", // You can add a project description here if needed
+      link: "", // Add any project link if necessary
+      folder: 4, // Specify the folder ID if applicable
+      tasks: tasks.map((task) => ({
+        work: task.title,
+        description: task.description,
+        completed: false,
+        assignto: allinfo.id,
+        subtasks: task.subtasks.map((subtask) => ({
+          subwork: subtask.title,
+          subdescription: subtask.description,
+          completed: false,
+          assignto: allinfo.id, // Assign to specific user if needed
+        })),
+      })),
+    };
+
+    axios
+      .post(
+        "https://honoprisma.codessahil.workers.dev/createproject",
+        projectData,
+        {
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+            "Content-Type": "application/json",
+          },
+        }
+      )
+      .then((response) => {
+        //console.log('Project created successfully:', response.data);
+        navigate("/userprojects");
+      })
+      .catch((error) => {
+        console.error("Error creating project:", error);
+        // Handle error, such as displaying an error message
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  }
+
+  return (
+    <div className="p-4 pt-12">
+      <label
+        for="first_name"
+        class="block mb-2 text-sm font-medium text-gray-900"
+      >
+        Project / Objective / Target
+      </label>
+      <div className="pb-1">
+        <input
+          type="text"
+          ref={inputRef}
+          className="text-sm rounded-lg block w-full p-2.5 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500"
+          placeholder="Enter title / name..."
+          value={projectName}
+          onChange={(e) => setProjectName(e.target.value)}
+        />
+      </div>
+      <hr className=" mt-2"></hr>
+      <hr></hr>
+      <hr></hr>
+
+      <div className="overflow-y-auto">
+        {renderTasks(tasks)}
+        <div className="">
+          <div className="flex justify-center w-full">
+            <button
+              onClick={() => addTask()}
+              className="mt-4 p-2 px-6 bg-blue-500 text-white rounded"
+            >
+              Add Task
+            </button>
+          </div>
+        </div>
+      </div>
+      <div className="mt-2">
+        <Button name="Create" onClick={handleCreateProject}></Button>
+      </div>
+      {loading && <LoadingIndicator />}
+    </div>
+  );
 }
