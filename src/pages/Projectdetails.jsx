@@ -5,12 +5,14 @@ import { useNavigate } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { info } from "../store/atoms/userinfo";
 import { allusers } from "../store/atoms/contacts";
+import toast from "react-hot-toast";
 //import { set } from "date-fns";
 var projectdata1 = null;
 var projectdate = null;
 export function ProjectDetails() {
   const [projectData, setProjectData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [loadinginvite, setLoadinginvite] = useState(false);
   const { id } = useParams();
   const [AllUsers, setAllUsers] = useRecoilState(allusers);
   const [showModal, setShowModal] = useState(false);
@@ -26,7 +28,7 @@ export function ProjectDetails() {
   const [mailworks, setmailworks] = useState([]);
   const [mailsubworks, setmailsubworks] = useState([]);
   const [tasks, setTasks] = useState(null);
-
+  
   const invitedUsersRef = useRef(invitedusers);
 
   // Update ref whenever invitedusers state changes
@@ -287,6 +289,7 @@ export function ProjectDetails() {
   };
 
   const handleUserClick = async (userId) => {
+    setLoadinginvite(true);
     const res = await axios.post(
       `https://honoprisma.codessahil.workers.dev/inviteUserToProject`,
       {
@@ -301,11 +304,15 @@ export function ProjectDetails() {
       }
     );
     // setShowModal(false);
+    setLoadinginvite(false);
+   
+    toast.success("Invitation sent");
     setinvitedusers((prevInvitedUsers) => [...prevInvitedUsers, res.data.res]);
     setAllUsers((prevUsers) => prevUsers.filter((user) => user.id !== userId));
     setShowModal(false);
   };
   const handleUserClick1 = async (id) => {
+    setLoadinginvite(true);
     const res = await axios.post(
       `https://honoprisma.codessahil.workers.dev/removeinvite`,
       {
@@ -320,8 +327,10 @@ export function ProjectDetails() {
     );
     // setShowModal(false);
     fetchInvitedUsers();
+    toast.success("User removed");
     fetchAllUsers();
     setShowModal1(false);
+    setLoadinginvite(false);
   };
 
   const transformTasks = async (works, subworks) => {
@@ -494,7 +503,12 @@ export function ProjectDetails() {
               </button>
             </div>
             <div className="grid gap-2">
-              {AllUsers.filter(
+              {loadinginvite && <div className="flex justify-center">
+                <div className="flex flex-col justify-center">
+                Loading...
+                </div>
+                </div>}
+              {!loadinginvite && AllUsers.filter(
                 (user) =>
                   !invitedusers.some((invite) => invite.user_id === user.id)
               ).map((user) => (
@@ -537,7 +551,12 @@ export function ProjectDetails() {
               </button>
             </div>
             <div className="grid gap-2">
-              {invitedusers.map((user) => (
+            {loadinginvite && <div className="flex justify-center">
+                <div className="flex flex-col justify-center">
+                Loading...
+                </div>
+                </div>}
+              {!loadinginvite&& invitedusers.map((user) => (
                 <div
                   key={user.id}
                   className={`${
@@ -1929,6 +1948,8 @@ const LoadingIndicator = () => (
 );
 
 export default ProjectTaskManager;
+
+
 
 
 
@@ -3679,6 +3700,9 @@ export default ProjectTaskManager;
 //   const [title, setTitle] = useState("");
 //   const [description, setDiscription] = useState("");
 //   const [loading, setLoading] = useState(false);
+//   const inputRef = useRef(null);
+
+//   useEffect(() => { inputRef.current.focus(); }, []);
 //   //console.log(showinfoofid);
 //   if (loading) {
 //     return (
@@ -3694,7 +3718,7 @@ export default ProjectTaskManager;
 //   return (
 //     <div>
 //       {!loading && (
-//         <div className=" text-slate-700 pb-2">
+//         <div className=" text-slate-700 pb-2 smd:w-80 md:w-96">
 //           <label
 //             for="email"
 //             class="block mb-1 text-sm font-medium text-gray-900 "
@@ -3706,6 +3730,7 @@ export default ProjectTaskManager;
 //               setTitle(e.target.value);
 //             }}
 //             type="email"
+//             ref={inputRef}
 //             id="email"
 //             className="mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 placeholder-gray-400 dark:text-white focus:ring-blue-500 focus:border-blue-500"
 //             placeholder="you title"
@@ -3768,6 +3793,9 @@ export default ProjectTaskManager;
 //   const [title, setTitle] = useState("");
 //   const [description, setDiscription] = useState("");
 //   const [loading, setLoading] = useState(false);
+//   const inputRef = useRef(null);
+
+//   useEffect(() => { inputRef.current.focus(); }, []);
 //   if (loading) {
 //     return (
 //       <div>
@@ -3782,7 +3810,7 @@ export default ProjectTaskManager;
 //   return (
 //     <div>
 //       {!loading && (
-//         <div className=" text-slate-700 pb-2">
+//         <div className=" text-slate-700 pb-2 smd:w-80 md:w-96">
 //           <label class="block mb-1 text-sm font-medium text-gray-900 ">
 //             title
 //           </label>
@@ -3791,6 +3819,7 @@ export default ProjectTaskManager;
 //               setTitle(e.target.value);
 //             }}
 //             type="email"
+//             ref={inputRef}
 //             id="email"
 //             className="mb-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 placeholder-gray-400 dark:text-white focus:ring-blue-500 focus:border-blue-500"
 //             placeholder="you title"
@@ -3855,3 +3884,7 @@ export default ProjectTaskManager;
 // );
 
 // export default ProjectTaskManager;
+
+
+
+
