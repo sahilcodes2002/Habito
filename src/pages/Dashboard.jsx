@@ -31,9 +31,11 @@ export function Dashboard() {
     if (!localStorage.getItem("token")) {
       navigate("/");
     }
-
+    var toastId = null;
     async function reget() {
-      var toastId = null;
+      if (!localStorage.getItem("token")) {
+        return;
+      }
       try {
         toastId = toast.loading("Please wait, fetching data from server...");
         setLoading(true);
@@ -68,6 +70,10 @@ export function Dashboard() {
     }
 
     reget();
+
+    return(()=>{
+      toast.dismiss(toastId);
+    })
   }, []);
 
   useEffect(() => {
@@ -2914,6 +2920,5 @@ function Sceleton() {
 // //   </div>
 // // </div>
 // // }
-
 
 
