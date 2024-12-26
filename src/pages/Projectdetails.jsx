@@ -28,7 +28,7 @@ export function ProjectDetails() {
   const [mailworks, setmailworks] = useState([]);
   const [mailsubworks, setmailsubworks] = useState([]);
   const [tasks, setTasks] = useState(null);
-  
+
   const invitedUsersRef = useRef(invitedusers);
 
   // Update ref whenever invitedusers state changes
@@ -36,9 +36,9 @@ export function ProjectDetails() {
     invitedUsersRef.current = invitedusers;
   }, [invitedusers]);
 
-  useEffect(()=>{
+  useEffect(() => {
     console.log(projectData);
-  },[projectData])
+  }, [projectData]);
 
   useEffect(() => {
     if (!localStorage.getItem("token")) {
@@ -51,7 +51,7 @@ export function ProjectDetails() {
       setLoading(true);
       await fetchProjectData();
       setLoading(false);
-      
+
       try {
         const response1 = await axios.post(
           `https://honoprisma.codessahil.workers.dev/getmailwork`,
@@ -87,7 +87,7 @@ export function ProjectDetails() {
       await fetchAllUsers();
       fetchInvitedUsers().then(() => {
         intervalId = setInterval(async () => {
-          console.log(invitedUsersRef.current.length); 
+          console.log(invitedUsersRef.current.length);
           if (projectdata1 != null && invitedUsersRef.current.length > 0) {
             const dd = await checktoupdate();
             if (dd === true) {
@@ -97,10 +97,7 @@ export function ProjectDetails() {
             }
           }
         }, 5000);
-        
       });
-      
-      
     }
 
     start();
@@ -177,7 +174,6 @@ export function ProjectDetails() {
           }
         );
 
-        // Get the data from the response
         const data = await response.data.res;
         return data;
       } catch (error) {
@@ -195,7 +191,6 @@ export function ProjectDetails() {
       // Start loading
       // projectdata1 = projectData;
       setProjectData(null);
-      // Make the request to the backend
       const response = await axios.get(
         `https://honoprisma.codessahil.workers.dev/getproject/${id}`,
         {
@@ -305,7 +300,7 @@ export function ProjectDetails() {
     );
     // setShowModal(false);
     setLoadinginvite(false);
-   
+
     toast.success("Invitation sent");
     setinvitedusers((prevInvitedUsers) => [...prevInvitedUsers, res.data.res]);
     setAllUsers((prevUsers) => prevUsers.filter((user) => user.id !== userId));
@@ -349,7 +344,7 @@ export function ProjectDetails() {
           description: subwork.subdescription,
           assignto: subwork.assignto,
           completed: subwork.completed,
-          work_id: subwork.work_id
+          work_id: subwork.work_id,
         })),
     }));
   };
@@ -503,24 +498,25 @@ export function ProjectDetails() {
               </button>
             </div>
             <div className="grid gap-2">
-              {loadinginvite && <div className="flex justify-center">
-                <div className="flex flex-col justify-center">
-                Loading...
+              {loadinginvite && (
+                <div className="flex justify-center">
+                  <div className="flex flex-col justify-center">Loading...</div>
                 </div>
-                </div>}
-              {!loadinginvite && AllUsers.filter(
-                (user) =>
-                  !invitedusers.some((invite) => invite.user_id === user.id)
-              ).map((user) => (
-                <div
-                  key={user.id}
-                  className="bg-gray-100 p-2 rounded-md cursor-pointer hover:bg-gray-200"
-                  onClick={() => handleUserClick(user.id)}
-                >
-                  <div className="text-lg font-semibold">{user.name}</div>
-                  <div className="text-gray-600">{user.username}</div>
-                </div>
-              ))}
+              )}
+              {!loadinginvite &&
+                AllUsers.filter(
+                  (user) =>
+                    !invitedusers.some((invite) => invite.user_id === user.id)
+                ).map((user) => (
+                  <div
+                    key={user.id}
+                    className="bg-gray-100 p-2 rounded-md cursor-pointer hover:bg-gray-200"
+                    onClick={() => handleUserClick(user.id)}
+                  >
+                    <div className="text-lg font-semibold">{user.name}</div>
+                    <div className="text-gray-600">{user.username}</div>
+                  </div>
+                ))}
             </div>
           </div>
         </div>
@@ -551,51 +547,54 @@ export function ProjectDetails() {
               </button>
             </div>
             <div className="grid gap-2">
-            {loadinginvite && <div className="flex justify-center">
-                <div className="flex flex-col justify-center">
-                Loading...
+              {loadinginvite && (
+                <div className="flex justify-center">
+                  <div className="flex flex-col justify-center">Loading...</div>
                 </div>
-                </div>}
-              {!loadinginvite&& invitedusers.map((user) => (
-                <div
-                  key={user.id}
-                  className={`${
-                    user.accepted ? "bg-green-300" : "bg-gray-100"
-                  } p-2 rounded-md cursor-pointer hover:opacity-70`}
-                >
-                  <div className="flex justify-between">
-                    <div>
-                      <div className="text-lg font-semibold">
-                        {user.user.name}
-                      </div>
-                      <div className="text-gray-600">{user.user.username}</div>
-                    </div>
-                    <div
-                      className="flex flex-col justify-center"
-                      onClick={() => handleUserClick1(user.id)}
-                    >
+              )}
+              {!loadinginvite &&
+                invitedusers.map((user) => (
+                  <div
+                    key={user.id}
+                    className={`${
+                      user.accepted ? "bg-green-300" : "bg-gray-100"
+                    } p-2 rounded-md cursor-pointer hover:opacity-70`}
+                  >
+                    <div className="flex justify-between">
                       <div>
-                        <svg
-                          className="w-6 h-6"
-                          aria-hidden="true"
-                          fill="currentColor"
-                          viewBox="0 0 32 32"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <g data-name="22-Remove">
-                            <path
-                              fillRule="evenodd"
-                              clipRule="evenodd"
-                              d="M25 0H7a7 7 0 0 0-7 7v18a7 7 0 0 0 7 7h18a7 7 0 0 0 7-7V7a7 7 0 0 0-7-7zm5 25a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5h18a5 5 0 0 1 5 5z"
-                            />
-                            <path d="M6 15h20v2H6z" />
-                          </g>
-                        </svg>
+                        <div className="text-lg font-semibold">
+                          {user.user.name}
+                        </div>
+                        <div className="text-gray-600">
+                          {user.user.username}
+                        </div>
+                      </div>
+                      <div
+                        className="flex flex-col justify-center"
+                        onClick={() => handleUserClick1(user.id)}
+                      >
+                        <div>
+                          <svg
+                            className="w-6 h-6"
+                            aria-hidden="true"
+                            fill="currentColor"
+                            viewBox="0 0 32 32"
+                            xmlns="http://www.w3.org/2000/svg"
+                          >
+                            <g data-name="22-Remove">
+                              <path
+                                fillRule="evenodd"
+                                clipRule="evenodd"
+                                d="M25 0H7a7 7 0 0 0-7 7v18a7 7 0 0 0 7 7h18a7 7 0 0 0 7-7V7a7 7 0 0 0-7-7zm5 25a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5h18a5 5 0 0 1 5 5z"
+                              />
+                              <path d="M6 15h20v2H6z" />
+                            </g>
+                          </svg>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
             </div>
           </div>
         </div>
@@ -740,12 +739,20 @@ function ProjectTaskManager({
     const updateTaskCompleted = (taskList, taskId, parentId) => {
       return taskList.map((task) => {
         if (parentId === null && task.id === taskId) {
-          // It's a `work` and matches the taskId
+          const work = projectdata1.works.find((work) => work.id === taskId);
+          if (work) {
+            work.completed = !task.completed;
+          }
           return { ...task, completed: !task.completed };
         }
         if (task.subtasks && task.subtasks.length > 0) {
-          // Check subtasks only if `parentId` matches the current task's id
           if (task.id === parentId) {
+            const work = projectdata1.subworks.find(
+              (work) => work.id === taskId
+            );
+            if (work) {
+              work.completed = !task.completed;
+            }
             return {
               ...task,
               subtasks: task.subtasks.map((subtask) =>
@@ -755,7 +762,6 @@ function ProjectTaskManager({
               ),
             };
           } else {
-            // Continue looking for the right subtask
             return {
               ...task,
               subtasks: updateTaskCompleted(task.subtasks, taskId, parentId),
@@ -1090,17 +1096,12 @@ function ProjectTaskManager({
       //     }
       //     return task; // Return the other tasks as-is
       //   });
-      
+
       //   return {
       //     ...prevProjectData,
       //     tasks: updatedTasks,
       //   };
       // });
-      
-
-      
-      
-
     } catch (err) {
       alert(err);
     }
@@ -1108,7 +1109,7 @@ function ProjectTaskManager({
   async function handletaskdelete(id) {
     const prevtask = tasks;
     try {
-      setTasks(tasks.filter((task)=>task.id!==id));
+      setTasks(tasks.filter((task) => task.id !== id));
       //setLoading(true);
       await axios.post(
         `https://honoprisma.codessahil.workers.dev/deletework`,
@@ -1126,9 +1127,8 @@ function ProjectTaskManager({
       //filter((subtask) => subtask.id !== id),
       setProjectData((prevProjectData) => ({
         ...prevProjectData,
-        tasks: prevProjectData.tasks.filter((task) => task.id !== id)
+        tasks: prevProjectData.tasks.filter((task) => task.id !== id),
       }));
-      
     } catch (err) {
       setTasks(prevtask);
       alert(err);
@@ -1214,7 +1214,7 @@ function ProjectTaskManager({
                     onClick={async () => {
                       if (parentId) {
                         console.log(task);
-                        
+
                         await handlesubtaskdelete(task.id, task.work_id);
                         setRefresh((x) => !x);
                         //setRefresh1((x)=>!x);
@@ -1305,22 +1305,24 @@ function ProjectTaskManager({
                         }}
                         className="mt-1 cursor cursor-pointer "
                       >
-                        {(isediting != task.id && isediting===null && allinfo.id == projectData.user_id) && (
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke-width="1.5"
-                            stroke="currentColor"
-                            class="size-4"
-                          >
-                            <path
-                              stroke-linecap="round"
-                              stroke-linejoin="round"
-                              d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125"
-                            />
-                          </svg>
-                        )}
+                        {isediting != task.id &&
+                          isediting === null &&
+                          allinfo.id == projectData.user_id && (
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke-width="1.5"
+                              stroke="currentColor"
+                              class="size-4"
+                            >
+                              <path
+                                stroke-linecap="round"
+                                stroke-linejoin="round"
+                                d="m16.862 4.487 1.687-1.688a1.875 1.875 0 1 1 2.652 2.652L6.832 19.82a4.5 4.5 0 0 1-1.897 1.13l-2.685.8.8-2.685a4.5 4.5 0 0 1 1.13-1.897L16.863 4.487Zm0 0L19.5 7.125"
+                              />
+                            </svg>
+                          )}
 
                         {isediting === task.id && (
                           <svg
@@ -1500,7 +1502,6 @@ function ProjectTaskManager({
                                   viewBox="0 0 64 64"
                                   width="20"
                                   height="29"
-                                  
                                 >
                                   <g>
                                     <rect
@@ -1510,7 +1511,7 @@ function ProjectTaskManager({
                                       height="32"
                                       rx="4"
                                       ry="4"
-                                      fill={`${done?"#009e00":"none"}`}
+                                      fill={`${done ? "#009e00" : "none"}`}
                                       stroke="currentColor"
                                       stroke-width="2"
                                     />
@@ -1524,7 +1525,7 @@ function ProjectTaskManager({
 
                                   <g transform="translate(20, -9) scale(0.8)">
                                     <path
-                                      fill={`${done?"#009e00":"none"}`}
+                                      fill={`${done ? "#009e00" : "none"}`}
                                       stroke="currentColor"
                                       stroke-width="2"
                                       stroke-linecap="round"
@@ -1732,8 +1733,14 @@ function ProjectTaskManager({
     <div className="p-2 pl-1 smd:pl-2 pt-5">
       <h2 className="text-xl font-bold mb-4">{projectTitle}</h2>
       <div>{renderTasks(tasks)}</div>
-      {loading  && <LoadingIndicator />}
-      <div className={`flex justify-center ${projectData.user_id == parseInt(allinfo.id)?"flex justify-center":"hidden"}`}>
+      {loading && <LoadingIndicator />}
+      <div
+        className={`flex justify-center ${
+          projectData.user_id == parseInt(allinfo.id)
+            ? "flex justify-center"
+            : "hidden"
+        }`}
+      >
         <button
           onClick={() => {
             setShowinfo1(true);
@@ -1766,7 +1773,9 @@ function ShowingInfo({ setRefresh, showinfoofid, id, setShowinfo }) {
   const [loading, setLoading] = useState(false);
   const inputRef = useRef(null);
 
-  useEffect(() => { inputRef.current.focus(); }, []);
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
   //console.log(showinfoofid);
   if (loading) {
     return (
@@ -1859,7 +1868,9 @@ function ShowingInfo1({ setRefresh, id, setShowinfo1 }) {
   const [loading, setLoading] = useState(false);
   const inputRef = useRef(null);
 
-  useEffect(() => { inputRef.current.focus(); }, []);
+  useEffect(() => {
+    inputRef.current.focus();
+  }, []);
   if (loading) {
     return (
       <div>
@@ -1953,6 +1964,9 @@ export default ProjectTaskManager;
 
 
 
+
+
+
 // import React, { useEffect, useState, useRef } from "react";
 // import axios from "axios";
 // import { useParams } from "react-router-dom";
@@ -1960,12 +1974,14 @@ export default ProjectTaskManager;
 // import { useRecoilState, useRecoilValue } from "recoil";
 // import { info } from "../store/atoms/userinfo";
 // import { allusers } from "../store/atoms/contacts";
+// import toast from "react-hot-toast";
 // //import { set } from "date-fns";
 // var projectdata1 = null;
 // var projectdate = null;
 // export function ProjectDetails() {
 //   const [projectData, setProjectData] = useState(null);
 //   const [loading, setLoading] = useState(true);
+//   const [loadinginvite, setLoadinginvite] = useState(false);
 //   const { id } = useParams();
 //   const [AllUsers, setAllUsers] = useRecoilState(allusers);
 //   const [showModal, setShowModal] = useState(false);
@@ -1981,7 +1997,7 @@ export default ProjectTaskManager;
 //   const [mailworks, setmailworks] = useState([]);
 //   const [mailsubworks, setmailsubworks] = useState([]);
 //   const [tasks, setTasks] = useState(null);
-
+  
 //   const invitedUsersRef = useRef(invitedusers);
 
 //   // Update ref whenever invitedusers state changes
@@ -2242,6 +2258,7 @@ export default ProjectTaskManager;
 //   };
 
 //   const handleUserClick = async (userId) => {
+//     setLoadinginvite(true);
 //     const res = await axios.post(
 //       `https://honoprisma.codessahil.workers.dev/inviteUserToProject`,
 //       {
@@ -2256,11 +2273,15 @@ export default ProjectTaskManager;
 //       }
 //     );
 //     // setShowModal(false);
+//     setLoadinginvite(false);
+   
+//     toast.success("Invitation sent");
 //     setinvitedusers((prevInvitedUsers) => [...prevInvitedUsers, res.data.res]);
 //     setAllUsers((prevUsers) => prevUsers.filter((user) => user.id !== userId));
 //     setShowModal(false);
 //   };
 //   const handleUserClick1 = async (id) => {
+//     setLoadinginvite(true);
 //     const res = await axios.post(
 //       `https://honoprisma.codessahil.workers.dev/removeinvite`,
 //       {
@@ -2275,8 +2296,10 @@ export default ProjectTaskManager;
 //     );
 //     // setShowModal(false);
 //     fetchInvitedUsers();
+//     toast.success("User removed");
 //     fetchAllUsers();
 //     setShowModal1(false);
+//     setLoadinginvite(false);
 //   };
 
 //   const transformTasks = async (works, subworks) => {
@@ -2449,7 +2472,12 @@ export default ProjectTaskManager;
 //               </button>
 //             </div>
 //             <div className="grid gap-2">
-//               {AllUsers.filter(
+//               {loadinginvite && <div className="flex justify-center">
+//                 <div className="flex flex-col justify-center">
+//                 Loading...
+//                 </div>
+//                 </div>}
+//               {!loadinginvite && AllUsers.filter(
 //                 (user) =>
 //                   !invitedusers.some((invite) => invite.user_id === user.id)
 //               ).map((user) => (
@@ -2492,7 +2520,12 @@ export default ProjectTaskManager;
 //               </button>
 //             </div>
 //             <div className="grid gap-2">
-//               {invitedusers.map((user) => (
+//             {loadinginvite && <div className="flex justify-center">
+//                 <div className="flex flex-col justify-center">
+//                 Loading...
+//                 </div>
+//                 </div>}
+//               {!loadinginvite&& invitedusers.map((user) => (
 //                 <div
 //                   key={user.id}
 //                   className={`${
